@@ -134,8 +134,8 @@ body {
 }
 
 .lang-toggle {
-    background: var(--primary-color);
-    color: rgb(10, 1, 17) !important;
+    background: #2563eb;
+    color: rgb(231, 228, 233) !important;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     transition: all 0.3s ease;
@@ -609,7 +609,7 @@ section {
 }
 
 .contact-form {
-    background: var(--bg-secondary);
+    background: #041124;
     padding: 2rem;
     border-radius: 1rem;
 }
