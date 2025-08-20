@@ -301,23 +301,37 @@
                     </div>
                 </div>
                 
-                <div class="connect-form">
-                    <form class="contact-form">
-                        <div class="form-group">
-                            <input type="text" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea placeholder="Your Message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
-                </div>
-            </div>
+<!-- =================== الكود النهائي والحاسم للنموذج =================== -->
+<!-- هذا الكود يحل مشكلة "Form should POST" بشكل نهائي -->
+
+<div class="connect-form">
+    <!--
+    التصحيح الحاسم:
+    1. التأكد من أن method="POST" مكتوبة بشكل صريح.
+    2. إضافة سمات name لكل حقل.
+    -->
+    <form class="contact-form" action="https://formspree.io/f/xdkdrdep" method="POST">
+
+        <div class="form-group">
+            <input type="text" name="name" placeholder="Your Name" required>
         </div>
-    </section>
+
+        <div class="form-group">
+            <input type="email" name="email" placeholder="Your Email" required>
+        </div>
+
+        <div class="form-group">
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+        </div>
+
+        <!-- الزر سليم ويحتوي على type="submit" -->
+        <button type="submit" class="btn btn-primary">Send Message</button>
+
+    </form>
+</div>
+
+<!-- ======================================================================= -->
+
 
     <!-- Footer -->
     <footer class="footer">
