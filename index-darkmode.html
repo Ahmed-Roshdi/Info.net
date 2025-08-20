@@ -301,23 +301,39 @@
                     </div>
                 </div>
                 
-                <div class="connect-form">
-                    <form class="contact-form">
-                        <div class="form-group">
-                            <input type="text" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea placeholder="Your Message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
-                </div>
-            </div>
+<!-- =================== الكود النهائي لـ StaticForms مع مفتاحك =================== -->
+<!-- هذا الكود جاهز للعمل مباشرة -->
+
+<div class="connect-form">
+    <form class="contact-form" action="https://api.staticforms.xyz/submit" method="POST">
+        
+        <!-- ** تم وضع مفتاح الوصول الخاص بك هنا ** -->
+        <input type="hidden" name="accessKey" value="sf_mfefn5i3g50egh278n7afgl7">
+        
+        <!-- حقول النموذج -->
+        <div class="form-group">
+            <input type="text" name="name" placeholder="Your Name" required>
         </div>
-    </section>
+        <div class="form-group">
+            <input type="email" name="email" placeholder="Your Email" required>
+        </div>
+        <div class="form-group">
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+        </div>
+        
+        <!-- (اختياري ) تخصيص عنوان الرسالة التي تصلك -->
+        <input type="hidden" name="subject" value="رسالة جديدة من موقعك الشخصي!">
+        
+        <!-- (اختياري) إعادة توجيه المستخدم إلى صفحة شكر -->
+        <input type="hidden" name="redirectTo" value="">
+        
+        <button type="submit" class="btn btn-primary">Send Message</button>
+        
+    </form>
+</div>
+
+<!-- ======================================================================= -->
+
 
     <!-- Footer -->
     <footer class="footer">
