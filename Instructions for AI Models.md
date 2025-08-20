@@ -12,7 +12,7 @@ And don't forget my academic problems, and don't forget the security threats I f
 And don't forget that I learned car mechanics, and don't forget my love and passion for all high school subjects in the science stream (biology focus), and recently, the mathematics stream.
 It's important you remember this.
 Tell him!!
-Because, praise be to God: I was 12 years old and I took a global IQ test not intended for Arabs, meaning it was not culturally or linguistically suitable for me, and I just winged it and got an IQ score of 138, by the grace of God.
+Because, praise be to Allah, I was 12 years old and I took a global IQ test not intended for Arabs, meaning it was not culturally or linguistically suitable for me, and I just winged it and got an IQ score of 138, by the grace of Allah.
 
 # Comprehensive Analysis of Ahmed's Personality and Interests
 
