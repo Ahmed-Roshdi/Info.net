@@ -301,36 +301,41 @@
                     </div>
                 </div>
                 
-<!-- =================== الكود النهائي والحاسم للنموذج =================== -->
-<!-- هذا الكود يحل مشكلة "Form should POST" بشكل نهائي -->
+<!-- =================== الكود النهائي والصحيح للنموذج =================== -->
+<!-- هذا الكود جاهز للنسخ واللصق مباشرة في مشروعك -->
 
 <div class="connect-form">
-    <!--
-    التصحيح الحاسم:
-    1. التأكد من أن method="POST" مكتوبة بشكل صريح.
-    2. إضافة سمات name لكل حقل.
+    <!-- 
+      التعديلات المطبقة:
+      1. تم وضع رابط Formspree الصحيح في 'action'.
+      2. تم ضبط 'method' على 'POST'.
+      3. تم إضافة سمة 'name' لكل حقل إدخال (input/textarea).
     -->
     <form class="contact-form" action="https://formspree.io/f/xdkdrdep" method="POST">
 
         <div class="form-group">
+            <!-- حقل الاسم -->
             <input type="text" name="name" placeholder="Your Name" required>
         </div>
 
         <div class="form-group">
+            <!-- حقل البريد الإلكتروني -->
             <input type="email" name="email" placeholder="Your Email" required>
         </div>
 
         <div class="form-group">
+            <!-- حقل الرسالة -->
             <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
         </div>
 
-        <!-- الزر سليم ويحتوي على type="submit" -->
+        <!-- زر الإرسال -->
         <button type="submit" class="btn btn-primary">Send Message</button>
 
     </form>
 </div>
 
 <!-- ======================================================================= -->
+
 
 
     <!-- Footer -->
