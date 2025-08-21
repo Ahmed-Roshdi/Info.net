@@ -1,123 +1,52 @@
 // Cybersecurity Arabic Light Mode JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all functionality
-    initializeAutoRedirect();
-    initializeAnimations();
-    initializeSkillBars();
-    initializeCounters();
-});
-
-// Auto-redirect functionality
-function initializeAutoRedirect() {
-    // Check if user has already been redirected in this session
-    if (sessionStorage.getItem('cybersecurity_ar_redirect_shown')) {
-        // Hide the notification if already shown
-        const notification = document.getElementById('redirect-notification');
-        if (notification) {
-            notification.style.display = 'none';
-        }
-        return;
-    }
-
-    let countdown = 7;
-    const countdownElement = document.getElementById('countdown');
-    const stayBtn = document.getElementById('stay-btn');
-    const notification = document.getElementById('redirect-notification');
-    
-    // Update countdown every second
-    const countdownTimer = setInterval(() => {
-        countdown--;
-        if (countdownElement) {
-            countdownElement.textContent = countdown;
-        }
-        
-        if (countdown <= 0) {
-            clearInterval(countdownTimer);
-            // Set session flag to prevent future redirects
-            sessionStorage.setItem('cybersecurity_ar_redirect_shown', 'true');
-            // Redirect to dark mode
-            window.location.href = 'cybersecurity-ar-darkmode.html';
-        }
-    }, 1000);
-    
-    // Handle stay button click
-    if (stayBtn) {
-        stayBtn.addEventListener('click', () => {
-            clearInterval(countdownTimer);
-            sessionStorage.setItem('cybersecurity_ar_redirect_shown', 'true');
-            if (notification) {
-                notification.style.animation = 'slideOut 0.5s ease-in-out';
-                setTimeout(() => {
-                    notification.style.display = 'none';
-                }, 500);
-            }
-        });
-    }
-}
-
-// Initialize skill bar animations
-function initializeSkillBars() {
-    const skillBars = document.querySelectorAll('.skill-progress');
-    
-    const animateSkillBar = (bar) => {
-        const width = bar.dataset.width;
-        bar.style.width = width;
-    };
-    
-    // Intersection Observer for skill bars
-    const skillObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateSkillBar(entry.target);
-                skillObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    skillBars.forEach(bar => {
-        skillObserver.observe(bar);
-    });
-}
-
-// Initialize counter animations
-function initializeCounters() {
-    const counters = document.querySelectorAll('.stat-number, .result-number');
-    
-    const animateCounter = (element) => {
-        const target = parseInt(element.textContent.replace(/[^\d]/g, ''));
-        const suffix = element.textContent.replace(/[\d]/g, '');
-        let current = 0;
-        const increment = target / 100;
+    // Auto-redirect to dark mode after 7 seconds (only once per session)
+    if (!sessionStorage.getItem('cybersecurity_ar_visited')) {
+        let countdown = 7;
+        const countdownElement = document.getElementById('countdown');
         
         const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                current = target;
-                clearInterval(timer);
+            countdown--;
+            if (countdownElement) {
+                countdownElement.textContent = countdown;
             }
-            element.textContent = Math.floor(current) + suffix;
-        }, 20);
-    };
-    
-    // Intersection Observer for counters
-    const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateCounter(entry.target);
-                counterObserver.unobserve(entry.target);
+            
+            if (countdown <= 0) {
+                clearInterval(timer);
+                sessionStorage.setItem('cybersecurity_ar_visited', 'true');
+                window.location.href = 'cybersecurity-ar-darkmode.html';
+            }
+        }, 1000);
+        
+        // Allow user to cancel redirect by interacting with the page
+        document.addEventListener('click', () => {
+            clearInterval(timer);
+            sessionStorage.setItem('cybersecurity_ar_visited', 'true');
+            if (countdownElement && countdownElement.parentElement) {
+                countdownElement.parentElement.style.display = 'none';
             }
         });
-    }, { threshold: 0.5 });
+    } else {
+        // Hide countdown notice if user has already visited
+        const notice = document.querySelector('.auto-redirect-notice');
+        if (notice) {
+            notice.style.display = 'none';
+        }
+    }
     
-    counters.forEach(counter => {
-        counterObserver.observe(counter);
-    });
-}
-
-// Initialize general animations
-function initializeAnimations() {
-    // Smooth scrolling for internal links
+    // Mobile menu toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    }
+    
+    // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -131,89 +60,202 @@ function initializeAnimations() {
         });
     });
     
-    // Add fade-in animation to sections
-    const sections = document.querySelectorAll('section');
-    const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, { threshold: 0.1 });
-    
-    sections.forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        sectionObserver.observe(section);
+    // Add scroll effect to navbar
+    window.addEventListener('scroll', () => {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 100) {
+            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            navbar.style.boxShadow = '0 4px 6px -1px rgb(0 0 0 / 0.1)';
+        } else {
+            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            navbar.style.boxShadow = '0 1px 2px 0 rgb(0 0 0 / 0.05)';
+        }
     });
     
-    // Add hover effects to cards
-    const cards = document.querySelectorAll('.case-card, .tool-card, .cert-card');
-    cards.forEach(card => {
+    // Animate stats on scroll
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const statNumbers = entry.target.querySelectorAll('.stat-number');
+                statNumbers.forEach(stat => {
+                    const finalValue = stat.textContent;
+                    const numericValue = parseInt(finalValue.replace(/\D/g, ''));
+                    
+                    if (!isNaN(numericValue)) {
+                        animateNumber(stat, 0, numericValue, finalValue);
+                    }
+                });
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    const statsSection = document.querySelector('.stats');
+    if (statsSection) {
+        observer.observe(statsSection);
+    }
+    
+    // Number animation function
+    function animateNumber(element, start, end, originalText) {
+        const duration = 2000;
+        const startTime = performance.now();
+        
+        function updateNumber(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            const current = Math.floor(start + (end - start) * progress);
+            
+            if (originalText.includes('%')) {
+                element.textContent = current + '%';
+            } else if (originalText.includes('+')) {
+                element.textContent = current + '+';
+            } else {
+                element.textContent = current;
+            }
+            
+            if (progress < 1) {
+                requestAnimationFrame(updateNumber);
+            } else {
+                element.textContent = originalText;
+            }
+        }
+        
+        requestAnimationFrame(updateNumber);
+    }
+    
+    // Add hover effects to service cards
+    const serviceCards = document.querySelectorAll('.service-card');
+    serviceCards.forEach(card => {
         card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-5px) scale(1.02)';
+            card.style.transform = 'translateY(-10px)';
         });
         
         card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0) scale(1)';
+            card.style.transform = 'translateY(0)';
         });
+    });
+    
+    // Add click effects to buttons
+    const buttons = document.querySelectorAll('.btn, .contact-btn');
+    buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple');
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+    
+    // RTL-specific adjustments
+    document.body.setAttribute('dir', 'rtl');
+    
+    // Adjust animations for RTL
+    const style = document.createElement('style');
+    style.textContent = `
+        .btn, .contact-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            pointer-events: none;
+        }
+        
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
+        /* RTL-specific animations */
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .service-card {
+            animation: slideInRight 0.6s ease-out;
+        }
+        
+        .service-card:nth-child(even) {
+            animation: slideInLeft 0.6s ease-out;
+        }
+        
+        /* Mobile menu adjustments for RTL */
+        @media (max-width: 768px) {
+            .nav-menu.active {
+                transform: translateX(0);
+                right: 0;
+                left: auto;
+            }
+            
+            .nav-menu {
+                transform: translateX(100%);
+            }
+        }
+    `;
+    document.head.appendChild(style);
+});
+
+// Arabic number formatting
+function formatArabicNumbers(text) {
+    const arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+    return text.replace(/[0-9]/g, function(match) {
+        return arabicNumbers[parseInt(match)];
     });
 }
 
-// Keyboard shortcuts
-document.addEventListener('keydown', function(e) {
-    // Ctrl + Shift + D for dark mode toggle
-    if (e.ctrlKey && e.shiftKey && e.key === 'D') {
-        sessionStorage.setItem('cybersecurity_ar_redirect_shown', 'true');
-        window.location.href = 'cybersecurity-ar-darkmode.html';
-    }
-    
-    // Ctrl + Shift + L for language toggle
-    if (e.ctrlKey && e.shiftKey && e.key === 'L') {
-        window.location.href = 'cybersecurity.html';
-    }
-    
-    // Escape key to go home
-    if (e.key === 'Escape') {
-        window.location.href = 'index-ar.html';
-    }
-});
-
-// Add scroll-based header background opacity
-window.addEventListener('scroll', () => {
-    const header = document.querySelector('.header');
-    const scrolled = window.pageYOffset;
-    
-    if (scrolled > 100) {
-        header.style.background = 'rgba(255, 255, 255, 0.98)';
-        header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-    } else {
-        header.style.background = 'rgba(255, 255, 255, 0.95)';
-        header.style.boxShadow = 'none';
-    }
-});
-
-// Add CSS for slide out animation
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideOut {
-        from {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
+// Optional: Convert numbers to Arabic numerals
+function convertToArabicNumerals() {
+    const numberElements = document.querySelectorAll('.stat-number, .countdown');
+    numberElements.forEach(element => {
+        if (element.textContent) {
+            element.textContent = formatArabicNumbers(element.textContent);
         }
-        to {
-            opacity: 0;
-            transform: translateX(-50%) translateY(-20px);
-        }
-    }
-`;
-document.head.appendChild(style);
+    });
+}
 
-// Console welcome message in Arabic
-console.log('%c🛡️ محفظة الأمن السيبراني - الوضع الفاتح', 'color: #2563eb; font-size: 16px; font-weight: bold;');
-console.log('%cمرحباً بك في محفظة أحمد رشدي للأمن السيبراني', 'color: #6b7280; font-size: 14px;');
-console.log('%cاضغط Ctrl+Shift+D للتبديل إلى الوضع المظلم', 'color: #059669; font-size: 12px;');
-console.log('%cاضغط Ctrl+Shift+L للتبديل إلى الإنجليزية', 'color: #059669; font-size: 12px;');
+// Uncomment the line below if you want to use Arabic numerals
+// convertToArabicNumerals();
 

@@ -3,232 +3,337 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ahmed Roshdi - Cybersecurity Specialist</title>
+    <title>Cybersecurity Services - Ahmed Roshdi</title>
     <link rel="stylesheet" href="css/cybersecurity-darkmode.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔒</text></svg>">
 </head>
 <body>
-    <!-- Header Navigation -->
-    <header class="header">
-        <nav class="nav-container">
-            <div class="nav-left">
-                <a href="index-darkmode.html" class="home-btn">
-                    <span class="terminal-prompt">~/</span>home
+    <!-- Matrix Rain Background -->
+    <div class="matrix-rain" id="matrixRain"></div>
+    
+    <!-- Cyber Grid Background -->
+    <div class="cyber-grid"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index-darkmode.html">
+                    <i class="fas fa-shield-virus"></i>
+                    Ahmed Roshdi
                 </a>
             </div>
-            <div class="nav-center">
-                <div class="logo">
-                    <span class="glitch" data-text="CYBER_SEC">CYBER_SEC</span>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index-darkmode.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#dashboard" class="nav-link">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#operations" class="nav-link">Operations</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#arsenal" class="nav-link">Arsenal</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="nav-controls">
+                <button class="lang-toggle" onclick="window.location.href='cybersecurity-ar-darkmode.html'">العربية</button>
+                <button class="theme-toggle" onclick="window.location.href='cybersecurity.html'">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
                 </div>
             </div>
-            <div class="nav-right">
-                <a href="cybersecurity.html" class="mode-toggle">
-                    <span class="icon">☀</span> Light
-                </a>
-                <a href="cybersecurity-ar-darkmode.html" class="lang-toggle">
-                    العربية
-                </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="cyber-hero" style="background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('./images/6RfCwCoBoW8M.jpg'); background-size: cover; background-position: center;">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="security-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span class="glitch" data-text="CERTIFIED SECURITY EXPERT">CERTIFIED SECURITY EXPERT</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="glitch" data-text="CYBERSECURITY">CYBERSECURITY</span>
+                    <span class="highlight neon-text">SPECIALIST</span>
+                </h1>
+                <p class="hero-subtitle typing-text">
+                    > Penetrating systems, securing networks, eliminating threats...
+                </p>
+                <div class="threat-level">
+                    <div class="threat-indicator">
+                        <span class="threat-label">THREAT LEVEL:</span>
+                        <span class="threat-status">NEUTRALIZED</span>
+                        <div class="threat-bar">
+                            <div class="threat-fill"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#dashboard" class="btn btn-primary">
+                        <i class="fas fa-terminal"></i>
+                        ACCESS DASHBOARD
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-satellite-dish"></i>
+                        ESTABLISH CONTACT
+                    </a>
+                </div>
             </div>
-        </nav>
-    </header>
+            <div class="hero-visual">
+                <div class="cyber-terminal">
+                    <div class="terminal-header">
+                        <div class="terminal-controls">
+                            <span class="control red"></span>
+                            <span class="control yellow"></span>
+                            <span class="control green"></span>
+                        </div>
+                        <div class="terminal-title">SECURITY_CONSOLE.exe</div>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line">
+                            <span class="prompt">root@security:~$</span>
+                            <span class="command">nmap -sS -O target.com</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="output">Starting Nmap scan...</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="output success">✓ Port 22/tcp open ssh</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="output success">✓ Port 80/tcp open http</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="output warning">⚠ Port 443/tcp filtered https</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="prompt">root@security:~$</span>
+                            <span class="command typing">sqlmap -u "target.com" --dbs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating Security Elements -->
+        <div class="floating-elements">
+            <div class="floating-element" style="top: 20%; left: 10%;">
+                <i class="fas fa-lock"></i>
+            </div>
+            <div class="floating-element" style="top: 60%; left: 15%;">
+                <i class="fas fa-key"></i>
+            </div>
+            <div class="floating-element" style="top: 40%; right: 10%;">
+                <i class="fas fa-bug"></i>
+            </div>
+            <div class="floating-element" style="top: 70%; right: 20%;">
+                <i class="fas fa-virus"></i>
+            </div>
+            <div class="floating-element" style="top: 30%; right: 30%;">
+                <i class="fas fa-user-secret"></i>
+            </div>
+        </div>
+    </section>
 
     <!-- Main Dashboard -->
-    <main class="main-dashboard">
-        <!-- Profile Widget -->
-        <section class="dashboard-widget profile-widget">
-            <div class="widget-header">
-                <span class="terminal-prompt">root@security:~$</span>
-                <span class="typing-text">whoami</span>
-            </div>
-            <div class="profile-content">
-                <div class="profile-image-container">
-                    <div class="profile-image">
-                        <div class="scan-line"></div>
+    <section id="dashboard" class="dashboard">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="glitch" data-text="SECURITY DASHBOARD">SECURITY DASHBOARD</span>
+            </h2>
+            <div class="dashboard-grid">
+                <!-- Profile Widget -->
+                <div class="dashboard-widget profile-widget">
+                    <div class="widget-header">
+                        <h3>OPERATOR PROFILE</h3>
+                        <div class="status-indicator">
+                            <span class="status-dot online"></span>
+                            <span>ONLINE</span>
+                        </div>
+                    </div>
+                    <div class="profile-content">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-secret"></i>
+                        </div>
+                        <div class="profile-info">
+                            <h4 class="glitch" data-text="AHMED ROSHDI">AHMED ROSHDI</h4>
+                            <p>CYBERSECURITY SPECIALIST</p>
+                            <div class="profile-stats">
+                                <div class="stat">
+                                    <span class="stat-value">315+</span>
+                                    <span class="stat-label">VULNERABILITIES</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">50+</span>
+                                    <span class="stat-label">PROJECTS</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="profile-info">
-                    <h1 class="name glitch" data-text="AHMED ROSHDI">AHMED ROSHDI</h1>
-                    <p class="title">CYBERSECURITY SPECIALIST</p>
-                    <div class="status-indicators">
-                        <span class="status online">ONLINE</span>
-                        <span class="clearance">CLEARANCE: LEVEL 5</span>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Skills Matrix -->
-        <section class="dashboard-widget skills-widget">
-            <div class="widget-header">
-                <span class="terminal-prompt">root@security:~$</span>
-                <span class="typing-text">cat skills.matrix</span>
-            </div>
-            <div class="skills-matrix">
-                <div class="skill-category">
-                    <h3>PENETRATION TESTING</h3>
-                    <div class="skill-bars">
-                        <div class="skill-bar" data-level="95">
-                            <span class="skill-name">Web App Testing</span>
-                            <div class="progress-bar"><div class="progress" style="width: 95%"></div></div>
-                            <span class="skill-level">95%</span>
+                <!-- Skills Matrix -->
+                <div class="dashboard-widget skills-widget">
+                    <div class="widget-header">
+                        <h3>SKILLS MATRIX</h3>
+                        <div class="matrix-indicator">
+                            <span class="matrix-dot"></span>
                         </div>
-                        <div class="skill-bar" data-level="90">
-                            <span class="skill-name">Network Testing</span>
-                            <div class="progress-bar"><div class="progress" style="width: 90%"></div></div>
-                            <span class="skill-level">90%</span>
+                    </div>
+                    <div class="skills-matrix">
+                        <div class="skill-item">
+                            <span class="skill-name">PENETRATION TESTING</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 95%;"></div>
+                            </div>
+                            <span class="skill-value">95%</span>
                         </div>
-                        <div class="skill-bar" data-level="85">
-                            <span class="skill-name">Mobile Testing</span>
-                            <div class="progress-bar"><div class="progress" style="width: 85%"></div></div>
-                            <span class="skill-level">85%</span>
+                        <div class="skill-item">
+                            <span class="skill-name">VULNERABILITY ASSESSMENT</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 90%;"></div>
+                            </div>
+                            <span class="skill-value">90%</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">SECURE CODE REVIEW</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 85%;"></div>
+                            </div>
+                            <span class="skill-value">85%</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">NETWORK SECURITY</span>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 88%;"></div>
+                            </div>
+                            <span class="skill-value">88%</span>
                         </div>
                     </div>
                 </div>
-                <div class="skill-category">
-                    <h3>DEFENSIVE SECURITY</h3>
-                    <div class="skill-bars">
-                        <div class="skill-bar" data-level="92">
-                            <span class="skill-name">Incident Response</span>
-                            <div class="progress-bar"><div class="progress" style="width: 92%"></div></div>
-                            <span class="skill-level">92%</span>
-                        </div>
-                        <div class="skill-bar" data-level="88">
-                            <span class="skill-name">Threat Hunting</span>
-                            <div class="progress-bar"><div class="progress" style="width: 88%"></div></div>
-                            <span class="skill-level">88%</span>
-                        </div>
-                        <div class="skill-bar" data-level="90">
-                            <span class="skill-name">SOC Operations</span>
-                            <div class="progress-bar"><div class="progress" style="width: 90%"></div></div>
-                            <span class="skill-level">90%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Live Stats -->
-        <section class="dashboard-widget stats-widget">
-            <div class="widget-header">
-                <span class="terminal-prompt">root@security:~$</span>
-                <span class="typing-text">systemctl status --all</span>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-value" data-target="315">0</div>
-                    <div class="stat-label">VULNERABILITIES FOUND</div>
+                <!-- Live Stats -->
+                <div class="dashboard-widget stats-widget">
+                    <div class="widget-header">
+                        <h3>LIVE STATISTICS</h3>
+                        <div class="pulse-indicator"></div>
+                    </div>
+                    <div class="live-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-bug"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-number" data-target="315">0</div>
+                                <div class="stat-label">VULNERABILITIES FOUND</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-number" data-target="50">0</div>
+                                <div class="stat-label">SYSTEMS SECURED</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-number" data-target="99">0</div>
+                                <div class="stat-label">UPTIME %</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-value" data-target="50">0</div>
-                    <div class="stat-label">SECURITY AUDITS</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value" data-target="25">0</div>
-                    <div class="stat-label">INCIDENT RESPONSES</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value" data-target="99">0</div>
-                    <div class="stat-label">UPTIME %</div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Threat Map -->
-        <section class="dashboard-widget threat-map-widget">
-            <div class="widget-header">
-                <span class="terminal-prompt">root@security:~$</span>
-                <span class="typing-text">nmap -sS -O target_network</span>
-            </div>
-            <div class="threat-map">
-                <div class="map-container">
-                    <div class="threat-indicator" style="top: 20%; left: 15%;">
-                        <div class="pulse-dot danger"></div>
-                        <span class="threat-label">CRITICAL</span>
+                <!-- Threat Map -->
+                <div class="dashboard-widget threat-widget">
+                    <div class="widget-header">
+                        <h3>THREAT MAP</h3>
+                        <div class="scan-indicator">
+                            <span>SCANNING...</span>
+                        </div>
                     </div>
-                    <div class="threat-indicator" style="top: 45%; left: 60%;">
-                        <div class="pulse-dot warning"></div>
-                        <span class="threat-label">HIGH</span>
-                    </div>
-                    <div class="threat-indicator" style="top: 70%; left: 30%;">
-                        <div class="pulse-dot safe"></div>
-                        <span class="threat-label">SECURE</span>
-                    </div>
-                    <div class="threat-indicator" style="top: 30%; left: 80%;">
-                        <div class="pulse-dot warning"></div>
-                        <span class="threat-label">MEDIUM</span>
-                    </div>
-                </div>
-                <div class="map-legend">
-                    <div class="legend-item">
-                        <div class="legend-dot danger"></div>
-                        <span>Critical Threats</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-dot warning"></div>
-                        <span>Moderate Risk</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-dot safe"></div>
-                        <span>Secured Assets</span>
+                    <div class="threat-map">
+                        <div class="map-grid">
+                            <div class="threat-point" style="top: 20%; left: 30%;">
+                                <div class="threat-pulse"></div>
+                                <div class="threat-info">
+                                    <span>SQL INJECTION</span>
+                                    <span class="threat-level high">HIGH</span>
+                                </div>
+                            </div>
+                            <div class="threat-point" style="top: 60%; left: 70%;">
+                                <div class="threat-pulse"></div>
+                                <div class="threat-info">
+                                    <span>XSS VULNERABILITY</span>
+                                    <span class="threat-level medium">MEDIUM</span>
+                                </div>
+                            </div>
+                            <div class="threat-point" style="top: 40%; left: 50%;">
+                                <div class="threat-pulse"></div>
+                                <div class="threat-info">
+                                    <span>CSRF TOKEN</span>
+                                    <span class="threat-level low">LOW</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <!-- Operations Log -->
-    <section class="operations-log">
-        <div class="log-header">
-            <span class="terminal-prompt">root@security:~$</span>
-            <span class="typing-text">tail -f /var/log/operations.log</span>
-        </div>
-        <div class="log-content">
-            <div class="case-study">
-                <div class="case-header">
-                    <span class="case-id">[CASE-001]</span>
-                    <span class="case-title">E-COMMERCE PLATFORM SECURITY AUDIT</span>
-                    <span class="case-status success">COMPLETED</span>
-                </div>
-                <div class="case-details">
-                    <p class="typewriter">Conducted comprehensive security assessment of major e-commerce platform...</p>
-                    <div class="case-metrics">
-                        <span class="metric">45 Vulnerabilities Identified</span>
-                        <span class="metric">100% Critical Issues Resolved</span>
-                        <span class="metric">30-Day Remediation Timeline</span>
+    <section id="operations" class="operations">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="glitch" data-text="OPERATIONS LOG">OPERATIONS LOG</span>
+            </h2>
+            <div class="operations-terminal">
+                <div class="terminal-header">
+                    <div class="terminal-controls">
+                        <span class="control red"></span>
+                        <span class="control yellow"></span>
+                        <span class="control green"></span>
                     </div>
+                    <div class="terminal-title">CASE_STUDIES.log</div>
                 </div>
-            </div>
-            
-            <div class="case-study">
-                <div class="case-header">
-                    <span class="case-id">[CASE-002]</span>
-                    <span class="case-title">FINANCIAL INSTITUTION INCIDENT RESPONSE</span>
-                    <span class="case-status success">COMPLETED</span>
-                </div>
-                <div class="case-details">
-                    <p class="typewriter">Led incident response team during sophisticated APT attack...</p>
-                    <div class="case-metrics">
-                        <span class="metric">2-Hour Response Time</span>
-                        <span class="metric">Zero Data Breach</span>
-                        <span class="metric">Full System Recovery</span>
+                <div class="terminal-body" id="operationsLog">
+                    <div class="log-entry">
+                        <span class="timestamp">[2024-01-15 14:32:17]</span>
+                        <span class="log-level success">SUCCESS</span>
+                        <span class="log-message">E-commerce platform penetration test completed. 15 critical vulnerabilities identified and patched.</span>
                     </div>
-                </div>
-            </div>
-
-            <div class="case-study">
-                <div class="case-header">
-                    <span class="case-id">[CASE-003]</span>
-                    <span class="case-title">GOVERNMENT NETWORK HARDENING</span>
-                    <span class="case-status in-progress">IN PROGRESS</span>
-                </div>
-                <div class="case-details">
-                    <p class="typewriter">Implementing advanced security controls for government infrastructure...</p>
-                    <div class="case-metrics">
-                        <span class="metric">85% Implementation Complete</span>
-                        <span class="metric">200+ Endpoints Secured</span>
-                        <span class="metric">Zero-Trust Architecture</span>
+                    <div class="log-entry">
+                        <span class="timestamp">[2024-01-10 09:45:33]</span>
+                        <span class="log-level warning">WARNING</span>
+                        <span class="log-message">Banking application security assessment revealed SQL injection vulnerability in login system.</span>
+                    </div>
+                    <div class="log-entry">
+                        <span class="timestamp">[2024-01-05 16:20:44]</span>
+                        <span class="log-level info">INFO</span>
+                        <span class="log-message">Network security audit for healthcare provider - HIPAA compliance verified.</span>
+                    </div>
+                    <div class="log-entry">
+                        <span class="timestamp">[2023-12-28 11:15:22]</span>
+                        <span class="log-level error">ERROR</span>
+                        <span class="log-message">Attempted breach detected on financial institution network - threat neutralized.</span>
                     </div>
                 </div>
             </div>
@@ -236,113 +341,123 @@
     </section>
 
     <!-- Tools Arsenal -->
-    <section class="tools-arsenal">
-        <div class="arsenal-header">
-            <span class="terminal-prompt">root@security:~$</span>
-            <span class="typing-text">ls -la /opt/tools/</span>
-        </div>
-        <div class="tools-grid">
-            <div class="tool-item" data-tool="burp-suite">
-                <div class="tool-icon">🛡️</div>
-                <div class="tool-name">Burp Suite</div>
-                <div class="tool-desc">Web App Security</div>
-            </div>
-            <div class="tool-item" data-tool="metasploit">
-                <div class="tool-icon">⚔️</div>
-                <div class="tool-name">Metasploit</div>
-                <div class="tool-desc">Penetration Testing</div>
-            </div>
-            <div class="tool-item" data-tool="wireshark">
-                <div class="tool-icon">🔍</div>
-                <div class="tool-name">Wireshark</div>
-                <div class="tool-desc">Network Analysis</div>
-            </div>
-            <div class="tool-item" data-tool="nmap">
-                <div class="tool-icon">🗺️</div>
-                <div class="tool-name">Nmap</div>
-                <div class="tool-desc">Network Discovery</div>
-            </div>
-            <div class="tool-item" data-tool="splunk">
-                <div class="tool-icon">📊</div>
-                <div class="tool-name">Splunk</div>
-                <div class="tool-desc">SIEM Platform</div>
-            </div>
-            <div class="tool-item" data-tool="kali-linux">
-                <div class="tool-icon">🐉</div>
-                <div class="tool-name">Kali Linux</div>
-                <div class="tool-desc">Security OS</div>
-            </div>
-            <div class="tool-item" data-tool="owasp-zap">
-                <div class="tool-icon">⚡</div>
-                <div class="tool-name">OWASP ZAP</div>
-                <div class="tool-desc">Security Scanner</div>
-            </div>
-            <div class="tool-item" data-tool="volatility">
-                <div class="tool-icon">🧠</div>
-                <div class="tool-name">Volatility</div>
-                <div class="tool-desc">Memory Forensics</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Certifications -->
-    <section class="certifications">
-        <div class="cert-header">
-            <span class="terminal-prompt">root@security:~$</span>
-            <span class="typing-text">cat /etc/credentials</span>
-        </div>
-        <div class="cert-grid">
-            <div class="cert-item">
-                <div class="cert-badge">CEH</div>
-                <div class="cert-name">Certified Ethical Hacker</div>
-                <div class="cert-status">In Progress</div>
-            </div>
-            <div class="cert-item">
-                <div class="cert-badge">OSCP</div>
-                <div class="cert-name">Offensive Security Certified Professional</div>
-                <div class="cert-status">Planned</div>
-            </div>
-            <div class="cert-item">
-                <div class="cert-badge">CISSP</div>
-                <div class="cert-name">Certified Information Systems Security Professional</div>
-                <div class="cert-status">Future Goal</div>
+    <section id="arsenal" class="arsenal">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="glitch" data-text="TOOLS ARSENAL">TOOLS ARSENAL</span>
+            </h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <h3>Burp Suite</h3>
+                    <p>Web application security testing</p>
+                    <div class="tool-status">ACTIVE</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Nmap</h3>
+                    <p>Network discovery and security auditing</p>
+                    <div class="tool-status">ACTIVE</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-terminal"></i>
+                    </div>
+                    <h3>Metasploit</h3>
+                    <p>Penetration testing framework</p>
+                    <div class="tool-status">ACTIVE</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Wireshark</h3>
+                    <p>Network protocol analyzer</p>
+                    <div class="tool-status">ACTIVE</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>OWASP ZAP</h3>
+                    <p>Web application security scanner</p>
+                    <div class="tool-status">ACTIVE</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>SQLMap</h3>
+                    <p>SQL injection testing tool</p>
+                    <div class="tool-status">ACTIVE</div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="contact-section">
-        <div class="contact-header">
-            <span class="terminal-prompt">root@security:~$</span>
-            <span class="typing-text">establish_secure_connection</span>
-        </div>
-        <div class="contact-grid">
-            <a href="mailto:ahmed@example.com" class="contact-btn">
-                <span class="contact-icon">📧</span>
-                <span class="contact-text">SECURE EMAIL</span>
-            </a>
-            <a href="https://github.com/ahmed" class="contact-btn">
-                <span class="contact-icon">💻</span>
-                <span class="contact-text">GITHUB REPO</span>
-            </a>
-            <a href="https://linkedin.com/in/ahmed" class="contact-btn">
-                <span class="contact-icon">🔗</span>
-                <span class="contact-text">LINKEDIN</span>
-            </a>
-            <a href="tel:+1234567890" class="contact-btn">
-                <span class="contact-icon">📱</span>
-                <span class="contact-text">ENCRYPTED CALL</span>
-            </a>
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="glitch" data-text="ESTABLISH CONTACT">ESTABLISH CONTACT</span>
+            </h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <h3>GitHub</h3>
+                    <p>View my security projects and contributions</p>
+                    <a href="https://github.com/ahmed-roshdi" class="contact-btn">
+                        <i class="fas fa-external-link-alt"></i>
+                        ACCESS REPOSITORY
+                    </a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Secure Email</h3>
+                    <p>Encrypted communication channel</p>
+                    <a href="mailto:contact@ahmed-roshdi.com" class="contact-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        SEND MESSAGE
+                    </a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <h3>LinkedIn</h3>
+                    <p>Professional network connection</p>
+                    <a href="https://linkedin.com/in/ahmed-roshdi" class="contact-btn">
+                        <i class="fas fa-link"></i>
+                        CONNECT
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2024 Ahmed Roshdi. All systems secured.</p>
-            <div class="footer-status">
-                <span class="status-dot"></span>
-                <span>System Status: OPERATIONAL</span>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-shield-virus"></i>
+                    <span>Ahmed Roshdi - Cybersecurity Specialist</span>
+                </div>
+                <div class="footer-status">
+                    <span class="status-dot online"></span>
+                    <span>System Status: OPERATIONAL</span>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Ahmed Roshdi. All systems secured.</p>
             </div>
         </div>
     </footer>

@@ -1,163 +1,156 @@
 // Cybersecurity Dark Mode JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all animations and interactions
-    initializeAnimations();
-    initializeStats();
-    initializeTypewriter();
-    initializeToolInteractions();
-    initializeGlitchEffects();
+    // Initialize all components
+    initMatrixRain();
+    initTypingAnimations();
+    initCounterAnimations();
+    initGlitchEffects();
+    initMobileMenu();
+    initSmoothScrolling();
+    initFloatingElements();
+    initTerminalAnimations();
 });
 
-// Initialize counter animations for stats
-function initializeStats() {
-    const statValues = document.querySelectorAll('.stat-value');
+// Matrix Rain Effect
+function initMatrixRain() {
+    const matrixContainer = document.getElementById('matrixRain');
+    if (!matrixContainer) return;
+
+    const characters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+    const columns = Math.floor(window.innerWidth / 20);
     
-    const animateCounter = (element, target) => {
-        let current = 0;
-        const increment = target / 100;
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                current = target;
-                clearInterval(timer);
-            }
-            element.textContent = Math.floor(current);
-        }, 20);
-    };
+    for (let i = 0; i < columns; i++) {
+        const column = document.createElement('div');
+        column.style.position = 'absolute';
+        column.style.left = i * 20 + 'px';
+        column.style.top = '0';
+        column.style.color = '#00ff41';
+        column.style.fontSize = '14px';
+        column.style.fontFamily = 'monospace';
+        column.style.opacity = '0.3';
+        column.style.animation = `matrixFall ${Math.random() * 3 + 2}s linear infinite`;
+        column.style.animationDelay = Math.random() * 2 + 's';
+        
+        let text = '';
+        for (let j = 0; j < 20; j++) {
+            text += characters.charAt(Math.floor(Math.random() * characters.length)) + '<br>';
+        }
+        column.innerHTML = text;
+        
+        matrixContainer.appendChild(column);
+    }
 
-    // Intersection Observer for stats animation
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const target = parseInt(entry.target.dataset.target);
-                animateCounter(entry.target, target);
-                statsObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    statValues.forEach(stat => {
-        statsObserver.observe(stat);
-    });
+    // Add CSS animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes matrixFall {
+            0% { transform: translateY(-100vh); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
 }
 
-// Initialize typewriter effects
-function initializeTypewriter() {
-    const typewriterElements = document.querySelectorAll('.typewriter');
+// Typing Animations
+function initTypingAnimations() {
+    const typingElements = document.querySelectorAll('.typing-text, .command.typing');
     
-    const typeWriter = (element, text, speed = 50) => {
-        element.innerHTML = '';
+    typingElements.forEach(element => {
+        const text = element.textContent;
+        element.textContent = '';
+        element.style.borderRight = '2px solid #ffff00';
+        
         let i = 0;
-        const timer = setInterval(() => {
+        const typeInterval = setInterval(() => {
             if (i < text.length) {
-                element.innerHTML += text.charAt(i);
+                element.textContent += text.charAt(i);
                 i++;
             } else {
-                clearInterval(timer);
+                clearInterval(typeInterval);
+                // Blinking cursor effect
+                setInterval(() => {
+                    element.style.borderRight = element.style.borderRight === 'none' ? '2px solid #ffff00' : 'none';
+                }, 500);
             }
-        }, speed);
+        }, 100);
+    });
+}
+
+// Counter Animations
+function initCounterAnimations() {
+    const counters = document.querySelectorAll('.stat-number[data-target]');
+    
+    const animateCounter = (counter) => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        const increment = target / 100;
+        let current = 0;
+        
+        const updateCounter = () => {
+            if (current < target) {
+                current += increment;
+                counter.textContent = Math.ceil(current) + (target > 99 ? '+' : '');
+                requestAnimationFrame(updateCounter);
+            } else {
+                counter.textContent = target + (target > 99 ? '+' : '');
+            }
+        };
+        
+        updateCounter();
     };
 
-    // Intersection Observer for typewriter animation
-    const typewriterObserver = new IntersectionObserver((entries) => {
+    // Intersection Observer for counter animation
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const text = entry.target.textContent;
-                typeWriter(entry.target, text, 30);
-                typewriterObserver.unobserve(entry.target);
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.5 });
-
-    typewriterElements.forEach(element => {
-        typewriterObserver.observe(element);
     });
+
+    counters.forEach(counter => observer.observe(counter));
 }
 
-// Initialize tool interactions
-function initializeToolInteractions() {
-    const toolItems = document.querySelectorAll('.tool-item');
-    
-    toolItems.forEach(tool => {
-        tool.addEventListener('mouseenter', () => {
-            tool.style.transform = 'translateY(-5px) scale(1.05)';
-            tool.style.boxShadow = '0 10px 20px rgba(0, 255, 65, 0.3)';
-        });
-        
-        tool.addEventListener('mouseleave', () => {
-            tool.style.transform = 'translateY(0) scale(1)';
-            tool.style.boxShadow = 'none';
-        });
-        
-        tool.addEventListener('click', () => {
-            const toolName = tool.dataset.tool;
-            showToolInfo(toolName);
-        });
-    });
-}
-
-// Show tool information
-function showToolInfo(toolName) {
-    const toolInfo = {
-        'burp-suite': 'Advanced web application security testing platform',
-        'metasploit': 'Comprehensive penetration testing framework',
-        'wireshark': 'Network protocol analyzer and packet capture tool',
-        'nmap': 'Network discovery and security auditing utility',
-        'splunk': 'Security Information and Event Management platform',
-        'kali-linux': 'Penetration testing and security auditing Linux distribution',
-        'owasp-zap': 'Web application security scanner',
-        'volatility': 'Advanced memory forensics framework'
-    };
-    
-    const info = toolInfo[toolName] || 'Security tool information';
-    
-    // Create temporary notification
-    const notification = document.createElement('div');
-    notification.className = 'tool-notification';
-    notification.textContent = info;
-    notification.style.cssText = `
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: var(--secondary-bg);
-        color: var(--primary-green);
-        padding: 1rem 2rem;
-        border: 1px solid var(--primary-green);
-        border-radius: 8px;
-        z-index: 10000;
-        box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
-        animation: fadeInOut 3s ease-in-out;
-    `;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        document.body.removeChild(notification);
-    }, 3000);
-}
-
-// Initialize glitch effects
-function initializeGlitchEffects() {
+// Glitch Effects
+function initGlitchEffects() {
     const glitchElements = document.querySelectorAll('.glitch');
     
     glitchElements.forEach(element => {
-        // Random glitch trigger
         setInterval(() => {
-            if (Math.random() < 0.1) { // 10% chance every interval
-                element.style.animation = 'none';
-                setTimeout(() => {
-                    element.style.animation = 'glitch 0.3s ease-in-out';
-                }, 10);
-            }
-        }, 2000);
+            element.style.animation = 'none';
+            setTimeout(() => {
+                element.style.animation = 'glitch 0.5s infinite';
+            }, 10);
+        }, Math.random() * 5000 + 3000);
     });
 }
 
-// Initialize general animations
-function initializeAnimations() {
-    // Smooth scrolling for internal links
+// Mobile Menu
+function initMobileMenu() {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    }
+}
+
+// Smooth Scrolling
+function initSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -170,46 +163,190 @@ function initializeAnimations() {
             }
         });
     });
+}
+
+// Floating Elements Animation
+function initFloatingElements() {
+    const floatingElements = document.querySelectorAll('.floating-element');
     
-    // Add loading animation to page
-    document.body.style.opacity = '0';
-    setTimeout(() => {
-        document.body.style.transition = 'opacity 0.5s ease-in-out';
-        document.body.style.opacity = '1';
-    }, 100);
-    
-    // Initialize progress bar animations
-    const progressBars = document.querySelectorAll('.progress');
-    const progressObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.animation = 'progressLoad 2s ease-out';
-                progressObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    progressBars.forEach(bar => {
-        progressObserver.observe(bar);
+    floatingElements.forEach((element, index) => {
+        element.style.animationDelay = (index * 0.5) + 's';
+        element.style.animationDuration = (Math.random() * 3 + 4) + 's';
     });
 }
 
-// Terminal command simulation
-function simulateTerminalCommand(command, output) {
-    console.log(`$ ${command}`);
-    console.log(output);
+// Terminal Animations
+function initTerminalAnimations() {
+    const terminalLines = document.querySelectorAll('.terminal-line');
+    
+    terminalLines.forEach((line, index) => {
+        line.style.opacity = '0';
+        line.style.transform = 'translateX(-20px)';
+        
+        setTimeout(() => {
+            line.style.transition = 'all 0.5s ease';
+            line.style.opacity = '1';
+            line.style.transform = 'translateX(0)';
+        }, index * 500);
+    });
 }
 
-// Add some terminal-style console messages
-setTimeout(() => {
-    simulateTerminalCommand('whoami', 'ahmed_roshdi');
-    simulateTerminalCommand('pwd', '/home/ahmed/cybersecurity');
-    simulateTerminalCommand('ls -la', 'total 42\ndrwxr-xr-x 5 ahmed ahmed 4096 Dec 15 10:30 .\ndrwxr-xr-x 3 ahmed ahmed 4096 Dec 15 10:29 ..\ndrwxr-xr-x 2 ahmed ahmed 4096 Dec 15 10:30 tools\ndrwxr-xr-x 2 ahmed ahmed 4096 Dec 15 10:30 reports\ndrwxr-xr-x 2 ahmed ahmed 4096 Dec 15 10:30 scripts');
-}, 1000);
+// Threat Map Animation
+function initThreatMap() {
+    const threatPoints = document.querySelectorAll('.threat-point');
+    
+    threatPoints.forEach((point, index) => {
+        const pulse = point.querySelector('.threat-pulse');
+        if (pulse) {
+            pulse.style.animationDelay = (index * 0.3) + 's';
+        }
+    });
+}
 
-// Keyboard shortcuts
-document.addEventListener('keydown', function(e) {
-    // Ctrl + Shift + D for dark mode toggle (already in dark mode)
+// Skill Bar Animations
+function initSkillBars() {
+    const skillBars = document.querySelectorAll('.skill-fill');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const width = entry.target.style.width;
+                entry.target.style.width = '0%';
+                setTimeout(() => {
+                    entry.target.style.transition = 'width 2s ease-in-out';
+                    entry.target.style.width = width;
+                }, 100);
+                observer.unobserve(entry.target);
+            }
+        });
+    });
+
+    skillBars.forEach(bar => observer.observe(bar));
+}
+
+// Tool Cards Hover Effects
+function initToolCards() {
+    const toolCards = document.querySelectorAll('.tool-card');
+    
+    toolCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-10px) scale(1.02)';
+            card.style.boxShadow = '0 0 30px rgba(0, 255, 65, 0.5)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0) scale(1)';
+            card.style.boxShadow = '0 0 20px rgba(0, 255, 65, 0.3)';
+        });
+    });
+}
+
+// Operations Log Auto-scroll
+function initOperationsLog() {
+    const logContainer = document.getElementById('operationsLog');
+    if (!logContainer) return;
+    
+    // Auto-scroll to bottom
+    setInterval(() => {
+        logContainer.scrollTop = logContainer.scrollHeight;
+    }, 5000);
+}
+
+// Particle System for Background
+function initParticleSystem() {
+    const particleContainer = document.createElement('div');
+    particleContainer.style.position = 'fixed';
+    particleContainer.style.top = '0';
+    particleContainer.style.left = '0';
+    particleContainer.style.width = '100%';
+    particleContainer.style.height = '100%';
+    particleContainer.style.pointerEvents = 'none';
+    particleContainer.style.zIndex = '-1';
+    document.body.appendChild(particleContainer);
+
+    for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.style.position = 'absolute';
+        particle.style.width = '2px';
+        particle.style.height = '2px';
+        particle.style.backgroundColor = '#00ff41';
+        particle.style.borderRadius = '50%';
+        particle.style.opacity = Math.random() * 0.5;
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animation = `particleFloat ${Math.random() * 10 + 5}s linear infinite`;
+        
+        particleContainer.appendChild(particle);
+    }
+
+    // Add particle animation CSS
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes particleFloat {
+            0% { transform: translateY(0px) translateX(0px); }
+            25% { transform: translateY(-20px) translateX(10px); }
+            50% { transform: translateY(-40px) translateX(-5px); }
+            75% { transform: translateY(-20px) translateX(-10px); }
+            100% { transform: translateY(0px) translateX(0px); }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Initialize additional effects when page loads
+window.addEventListener('load', () => {
+    initThreatMap();
+    initSkillBars();
+    initToolCards();
+    initOperationsLog();
+    initParticleSystem();
+});
+
+// Handle window resize
+window.addEventListener('resize', () => {
+    // Reinitialize matrix rain on resize
+    const matrixContainer = document.getElementById('matrixRain');
+    if (matrixContainer) {
+        matrixContainer.innerHTML = '';
+        initMatrixRain();
+    }
+});
+
+// Add custom cursor effect
+document.addEventListener('mousemove', (e) => {
+    const cursor = document.querySelector('.custom-cursor');
+    if (!cursor) {
+        const newCursor = document.createElement('div');
+        newCursor.className = 'custom-cursor';
+        newCursor.style.position = 'fixed';
+        newCursor.style.width = '20px';
+        newCursor.style.height = '20px';
+        newCursor.style.border = '2px solid #00ff41';
+        newCursor.style.borderRadius = '50%';
+        newCursor.style.pointerEvents = 'none';
+        newCursor.style.zIndex = '9999';
+        newCursor.style.transition = 'all 0.1s ease';
+        document.body.appendChild(newCursor);
+    }
+    
+    const cursorElement = document.querySelector('.custom-cursor');
+    if (cursorElement) {
+        cursorElement.style.left = (e.clientX - 10) + 'px';
+        cursorElement.style.top = (e.clientY - 10) + 'px';
+    }
+});
+
+// Add sound effects (optional)
+function playSound(soundType) {
+    // This would require audio files
+    // const audio = new Audio(`sounds/${soundType}.mp3`);
+    // audio.volume = 0.1;
+    // audio.play().catch(e => console.log('Audio play failed:', e));
+}
+
+// Add keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+    // Ctrl + Shift + D for dark mode toggle
     if (e.ctrlKey && e.shiftKey && e.key === 'D') {
         window.location.href = 'cybersecurity.html';
     }
@@ -218,74 +355,23 @@ document.addEventListener('keydown', function(e) {
     if (e.ctrlKey && e.shiftKey && e.key === 'L') {
         window.location.href = 'cybersecurity-ar-darkmode.html';
     }
-    
-    // Escape key to go home
-    if (e.key === 'Escape') {
-        window.location.href = 'index-darkmode.html';
-    }
 });
 
-// Add matrix rain effect (optional, lightweight version)
-function createMatrixRain() {
-    const canvas = document.createElement('canvas');
-    canvas.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: -1;
-        opacity: 0.1;
-    `;
-    document.body.appendChild(canvas);
-    
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    
-    const chars = '01';
-    const charSize = 14;
-    const columns = canvas.width / charSize;
-    const drops = [];
-    
-    for (let i = 0; i < columns; i++) {
-        drops[i] = 1;
-    }
-    
-    function draw() {
-        ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        ctx.fillStyle = '#00ff41';
-        ctx.font = charSize + 'px monospace';
-        
-        for (let i = 0; i < drops.length; i++) {
-            const text = chars[Math.floor(Math.random() * chars.length)];
-            ctx.fillText(text, i * charSize, drops[i] * charSize);
-            
-            if (drops[i] * charSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
-            drops[i]++;
-        }
-    }
-    
-    setInterval(draw, 100);
-}
+// Console easter egg
+console.log(`
+    ╔══════════════════════════════════════╗
+    ║          SYSTEM ACCESS GRANTED       ║
+    ║                                      ║
+    ║  Welcome to Ahmed Roshdi's           ║
+    ║  Cybersecurity Terminal              ║
+    ║                                      ║
+    ║  Status: SECURE                      ║
+    ║  Threat Level: NEUTRALIZED           ║
+    ║                                      ║
+    ╚══════════════════════════════════════╝
+`);
 
-// Initialize matrix rain effect after a delay
-setTimeout(createMatrixRain, 2000);
-
-// Add CSS for notification animation
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes fadeInOut {
-        0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-        20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-        80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-        100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-    }
-`;
-document.head.appendChild(style);
+console.log('%c[SECURITY] All systems operational', 'color: #00ff41; font-weight: bold;');
+console.log('%c[INFO] Matrix rain initialized', 'color: #ffff00;');
+console.log('%c[SUCCESS] Threat detection active', 'color: #00ff41;');
 

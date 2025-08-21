@@ -1,88 +1,170 @@
 // Cybersecurity Arabic Dark Mode JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all animations and interactions
-    initializeAnimations();
-    initializeStats();
-    initializeTypewriter();
-    initializeToolInteractions();
-    initializeGlitchEffects();
+    // Initialize all components
+    initGlitchEffects();
+    initTypingAnimations();
+    initCounterAnimations();
+    initSkillBars();
+    initThreatMap();
+    initToolsArsenal();
+    initMobileMenu();
+    initScrollAnimations();
+    initMatrixBackground();
 });
 
-// Initialize counter animations for stats
-function initializeStats() {
-    const statValues = document.querySelectorAll('.stat-value');
+// Glitch Effects
+function initGlitchEffects() {
+    const glitchElements = document.querySelectorAll('.glitch');
     
-    const animateCounter = (element, target) => {
-        let current = 0;
+    glitchElements.forEach(element => {
+        // Random glitch intervals
+        setInterval(() => {
+            element.style.animation = 'none';
+            setTimeout(() => {
+                element.style.animation = 'glitch 0.5s infinite';
+            }, 10);
+            
+            setTimeout(() => {
+                element.style.animation = 'none';
+            }, 500);
+        }, Math.random() * 3000 + 2000);
+    });
+}
+
+// Typing Animations
+function initTypingAnimations() {
+    const typingElements = document.querySelectorAll('.typing-text');
+    
+    typingElements.forEach((element, index) => {
+        const text = element.textContent;
+        element.textContent = '';
+        
+        setTimeout(() => {
+            let i = 0;
+            const typeInterval = setInterval(() => {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typeInterval);
+                }
+            }, 50);
+        }, index * 1000);
+    });
+}
+
+// Counter Animations
+function initCounterAnimations() {
+    const counters = document.querySelectorAll('.stat-value[data-target]');
+    
+    const animateCounter = (counter) => {
+        const target = parseInt(counter.getAttribute('data-target'));
         const increment = target / 100;
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                current = target;
-                clearInterval(timer);
-            }
-            element.textContent = Math.floor(current);
-        }, 20);
-    };
-
-    // Intersection Observer for stats animation
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const target = parseInt(entry.target.dataset.target);
-                animateCounter(entry.target, target);
-                statsObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    statValues.forEach(stat => {
-        statsObserver.observe(stat);
-    });
-}
-
-// Initialize typewriter effects
-function initializeTypewriter() {
-    const typewriterElements = document.querySelectorAll('.typewriter');
-    
-    const typeWriter = (element, text, speed = 50) => {
-        element.innerHTML = '';
-        let i = 0;
-        const timer = setInterval(() => {
-            if (i < text.length) {
-                element.innerHTML += text.charAt(i);
-                i++;
+        let current = 0;
+        
+        const updateCounter = () => {
+            if (current < target) {
+                current += increment;
+                counter.textContent = Math.ceil(current);
+                requestAnimationFrame(updateCounter);
             } else {
-                clearInterval(timer);
+                counter.textContent = target;
             }
-        }, speed);
+        };
+        
+        updateCounter();
     };
 
-    // Intersection Observer for typewriter animation
-    const typewriterObserver = new IntersectionObserver((entries) => {
+    // Intersection Observer for counter animation
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const text = entry.target.textContent;
-                typeWriter(entry.target, text, 30);
-                typewriterObserver.unobserve(entry.target);
+                setTimeout(() => {
+                    animateCounter(entry.target);
+                }, Math.random() * 500);
+                observer.unobserve(entry.target);
             }
         });
     }, { threshold: 0.5 });
 
-    typewriterElements.forEach(element => {
-        typewriterObserver.observe(element);
+    counters.forEach(counter => observer.observe(counter));
+}
+
+// Skill Bars Animation
+function initSkillBars() {
+    const skillBars = document.querySelectorAll('.skill-bar');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const progressBar = entry.target.querySelector('.progress');
+                if (progressBar) {
+                    const level = entry.target.getAttribute('data-level');
+                    progressBar.style.width = '0%';
+                    
+                    setTimeout(() => {
+                        progressBar.style.transition = 'width 2s ease-in-out';
+                        progressBar.style.width = level + '%';
+                    }, Math.random() * 500);
+                }
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    skillBars.forEach(bar => observer.observe(bar));
+}
+
+// Threat Map Animation
+function initThreatMap() {
+    const threatIndicators = document.querySelectorAll('.threat-indicator');
+    
+    threatIndicators.forEach((indicator, index) => {
+        const pulseDot = indicator.querySelector('.pulse-dot');
+        if (pulseDot) {
+            pulseDot.style.animationDelay = (index * 0.5) + 's';
+            
+            // Random threat level changes
+            setInterval(() => {
+                const threats = ['danger', 'warning', 'safe'];
+                const currentClass = Array.from(pulseDot.classList).find(cls => threats.includes(cls));
+                const newThreat = threats[Math.floor(Math.random() * threats.length)];
+                
+                if (currentClass !== newThreat) {
+                    pulseDot.classList.remove(currentClass);
+                    pulseDot.classList.add(newThreat);
+                }
+            }, Math.random() * 10000 + 5000);
+        }
     });
 }
 
-// Initialize tool interactions
-function initializeToolInteractions() {
+// Tools Arsenal Animation
+function initToolsArsenal() {
     const toolItems = document.querySelectorAll('.tool-item');
     
-    toolItems.forEach(tool => {
+    toolItems.forEach((tool, index) => {
         tool.addEventListener('mouseenter', () => {
             tool.style.transform = 'translateY(-5px) scale(1.05)';
-            tool.style.boxShadow = '0 10px 20px rgba(0, 255, 65, 0.3)';
+            tool.style.boxShadow = '0 0 20px rgba(0, 255, 65, 0.5)';
+            
+            // Add scanning effect
+            const scanLine = document.createElement('div');
+            scanLine.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 2px;
+                background: linear-gradient(90deg, transparent, #00ff41, transparent);
+                animation: scan 1s ease-in-out;
+            `;
+            tool.appendChild(scanLine);
+            
+            setTimeout(() => {
+                scanLine.remove();
+            }, 1000);
         });
         
         tool.addEventListener('mouseleave', () => {
@@ -90,148 +172,56 @@ function initializeToolInteractions() {
             tool.style.boxShadow = 'none';
         });
         
-        tool.addEventListener('click', () => {
-            const toolName = tool.dataset.tool;
-            showToolInfo(toolName);
+        // Staggered entrance animation
+        tool.style.opacity = '0';
+        tool.style.transform = 'translateY(30px)';
+        
+        setTimeout(() => {
+            tool.style.transition = 'all 0.5s ease';
+            tool.style.opacity = '1';
+            tool.style.transform = 'translateY(0)';
+        }, index * 100);
+    });
+}
+
+// Mobile Menu
+function initMobileMenu() {
+    // Mobile menu functionality would go here
+    // Since this is a dashboard-style layout, mobile menu might be different
+    const navToggle = document.querySelector('.nav-toggle');
+    if (navToggle) {
+        navToggle.addEventListener('click', () => {
+            document.body.classList.toggle('nav-open');
         });
-    });
+    }
 }
 
-// Show tool information in Arabic
-function showToolInfo(toolName) {
-    const toolInfo = {
-        'burp-suite': 'منصة متقدمة لاختبار أمان تطبيقات الويب',
-        'metasploit': 'إطار عمل شامل لاختبار الاختراق',
-        'wireshark': 'محلل بروتوكولات الشبكة وأداة التقاط الحزم',
-        'nmap': 'أداة اكتشاف الشبكة والتدقيق الأمني',
-        'splunk': 'منصة إدارة معلومات وأحداث الأمان',
-        'kali-linux': 'توزيعة لينكس لاختبار الاختراق والتدقيق الأمني',
-        'owasp-zap': 'ماسح أمان تطبيقات الويب',
-        'volatility': 'إطار عمل متقدم لتحليل الذاكرة الجنائي'
-    };
+// Scroll Animations
+function initScrollAnimations() {
+    const animatedElements = document.querySelectorAll('.dashboard-widget, .case-study, .cert-item, .contact-btn');
     
-    const info = toolInfo[toolName] || 'معلومات أداة الأمان';
-    
-    // Create temporary notification
-    const notification = document.createElement('div');
-    notification.className = 'tool-notification';
-    notification.textContent = info;
-    notification.style.cssText = `
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: var(--secondary-bg);
-        color: var(--primary-green);
-        padding: 1rem 2rem;
-        border: 1px solid var(--primary-green);
-        border-radius: 8px;
-        z-index: 10000;
-        box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
-        animation: fadeInOut 3s ease-in-out;
-        text-align: center;
-        font-family: 'Noto Sans Arabic', sans-serif;
-        direction: rtl;
-    `;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        document.body.removeChild(notification);
-    }, 3000);
-}
-
-// Initialize glitch effects
-function initializeGlitchEffects() {
-    const glitchElements = document.querySelectorAll('.glitch');
-    
-    glitchElements.forEach(element => {
-        // Random glitch trigger
-        setInterval(() => {
-            if (Math.random() < 0.1) { // 10% chance every interval
-                element.style.animation = 'none';
-                setTimeout(() => {
-                    element.style.animation = 'glitch 0.3s ease-in-out';
-                }, 10);
-            }
-        }, 2000);
-    });
-}
-
-// Initialize general animations
-function initializeAnimations() {
-    // Smooth scrolling for internal links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-    
-    // Add loading animation to page
-    document.body.style.opacity = '0';
-    setTimeout(() => {
-        document.body.style.transition = 'opacity 0.5s ease-in-out';
-        document.body.style.opacity = '1';
-    }, 100);
-    
-    // Initialize progress bar animations
-    const progressBars = document.querySelectorAll('.progress');
-    const progressObserver = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.animation = 'progressLoad 2s ease-out';
-                progressObserver.unobserve(entry.target);
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.5 });
-    
-    progressBars.forEach(bar => {
-        progressObserver.observe(bar);
+    }, { threshold: 0.1 });
+
+    animatedElements.forEach((element, index) => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(50px)';
+        element.style.transition = `all 0.6s ease ${index * 0.1}s`;
+        observer.observe(element);
     });
 }
 
-// Terminal command simulation in Arabic
-function simulateTerminalCommand(command, output) {
-    console.log(`$ ${command}`);
-    console.log(output);
-}
-
-// Add some terminal-style console messages in Arabic
-setTimeout(() => {
-    simulateTerminalCommand('whoami', 'ahmed_roshdi');
-    simulateTerminalCommand('pwd', '/home/ahmed/cybersecurity');
-    simulateTerminalCommand('ls -la', 'total 42\ndrwxr-xr-x 5 ahmed ahmed 4096 Dec 15 10:30 .\ndrwxr-xr-x 3 ahmed ahmed 4096 Dec 15 10:29 ..\ndrwxr-xr-x 2 ahmed ahmed 4096 Dec 15 10:30 tools\ndrwxr-xr-x 2 ahmed ahmed 4096 Dec 15 10:30 reports\ndrwxr-xr-x 2 ahmed ahmed 4096 Dec 15 10:30 scripts');
-}, 1000);
-
-// Keyboard shortcuts
-document.addEventListener('keydown', function(e) {
-    // Ctrl + Shift + D for dark mode toggle (already in dark mode)
-    if (e.ctrlKey && e.shiftKey && e.key === 'D') {
-        window.location.href = 'cybersecurity-ar.html';
-    }
-    
-    // Ctrl + Shift + L for language toggle
-    if (e.ctrlKey && e.shiftKey && e.key === 'L') {
-        window.location.href = 'cybersecurity-darkmode.html';
-    }
-    
-    // Escape key to go home
-    if (e.key === 'Escape') {
-        window.location.href = 'index-ar-darkmode.html';
-    }
-});
-
-// Add matrix rain effect (optional, lightweight version)
-function createMatrixRain() {
-    const canvas = document.createElement('canvas');
-    canvas.style.cssText = `
+// Matrix Background Effect
+function initMatrixBackground() {
+    const matrixContainer = document.createElement('div');
+    matrixContainer.style.cssText = `
         position: fixed;
         top: 0;
         left: 0;
@@ -241,60 +231,267 @@ function createMatrixRain() {
         z-index: -1;
         opacity: 0.1;
     `;
-    document.body.appendChild(canvas);
-    
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    
-    const chars = '۰۱';
-    const charSize = 14;
-    const columns = canvas.width / charSize;
-    const drops = [];
+    document.body.appendChild(matrixContainer);
+
+    const characters = '01أبتثجحخدذرزسشصضطظعغفقكلمنهوي';
+    const columns = Math.floor(window.innerWidth / 20);
     
     for (let i = 0; i < columns; i++) {
-        drops[i] = 1;
-    }
-    
-    function draw() {
-        ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        const column = document.createElement('div');
+        column.style.cssText = `
+            position: absolute;
+            left: ${i * 20}px;
+            top: 0;
+            color: #00ff41;
+            font-size: 14px;
+            font-family: monospace;
+            animation: matrixFall ${Math.random() * 3 + 2}s linear infinite;
+            animation-delay: ${Math.random() * 2}s;
+        `;
         
-        ctx.fillStyle = '#00ff41';
-        ctx.font = charSize + 'px monospace';
-        
-        for (let i = 0; i < drops.length; i++) {
-            const text = chars[Math.floor(Math.random() * chars.length)];
-            ctx.fillText(text, i * charSize, drops[i] * charSize);
-            
-            if (drops[i] * charSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
-            drops[i]++;
+        let text = '';
+        for (let j = 0; j < 20; j++) {
+            text += characters.charAt(Math.floor(Math.random() * characters.length)) + '<br>';
         }
+        column.innerHTML = text;
+        
+        matrixContainer.appendChild(column);
     }
-    
-    setInterval(draw, 100);
+
+    // Add matrix animation CSS
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes matrixFall {
+            0% { transform: translateY(-100vh); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        
+        @keyframes scan {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+    `;
+    document.head.appendChild(style);
 }
 
-// Initialize matrix rain effect after a delay
-setTimeout(createMatrixRain, 2000);
+// Terminal Command Simulation
+function initTerminalSimulation() {
+    const terminals = document.querySelectorAll('.log-content');
+    
+    terminals.forEach(terminal => {
+        // Simulate new log entries
+        setInterval(() => {
+            const logTypes = ['success', 'warning', 'info', 'error'];
+            const messages = [
+                'نظام الحماية نشط',
+                'تم اكتشاف محاولة اختراق',
+                'تم حظر عنوان IP مشبوه',
+                'تحديث قاعدة بيانات التهديدات',
+                'فحص الشبكة مكتمل'
+            ];
+            
+            const logEntry = document.createElement('div');
+            logEntry.className = 'log-entry';
+            logEntry.innerHTML = `
+                <span class="timestamp">[${new Date().toLocaleTimeString('ar-SA')}]</span>
+                <span class="log-level ${logTypes[Math.floor(Math.random() * logTypes.length)]}">${logTypes[Math.floor(Math.random() * logTypes.length)]}</span>
+                <span class="log-message">${messages[Math.floor(Math.random() * messages.length)]}</span>
+            `;
+            
+            terminal.appendChild(logEntry);
+            
+            // Keep only last 10 entries
+            const entries = terminal.querySelectorAll('.log-entry');
+            if (entries.length > 10) {
+                entries[0].remove();
+            }
+            
+            // Auto scroll to bottom
+            terminal.scrollTop = terminal.scrollHeight;
+        }, Math.random() * 5000 + 3000);
+    });
+}
 
-// Add CSS for notification animation
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes fadeInOut {
-        0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-        20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-        80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-        100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+// Cyber Grid Background
+function initCyberGrid() {
+    const gridContainer = document.createElement('div');
+    gridContainer.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            linear-gradient(rgba(0, 255, 65, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 255, 65, 0.1) 1px, transparent 1px);
+        background-size: 50px 50px;
+        pointer-events: none;
+        z-index: -2;
+        opacity: 0.3;
+        animation: gridPulse 4s ease-in-out infinite;
+    `;
+    document.body.appendChild(gridContainer);
+
+    const gridStyle = document.createElement('style');
+    gridStyle.textContent = `
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.1; }
+        }
+    `;
+    document.head.appendChild(gridStyle);
+}
+
+// Status Indicators
+function initStatusIndicators() {
+    const statusDots = document.querySelectorAll('.status-dot');
+    
+    statusDots.forEach(dot => {
+        // Random status changes
+        setInterval(() => {
+            const statuses = ['online', 'warning', 'error'];
+            const colors = ['#00ff41', '#ffff00', '#ff0040'];
+            const randomStatus = Math.floor(Math.random() * statuses.length);
+            
+            dot.style.background = colors[randomStatus];
+            dot.style.boxShadow = `0 0 10px ${colors[randomStatus]}`;
+        }, Math.random() * 10000 + 5000);
+    });
+}
+
+// Particle System
+function initParticleSystem() {
+    const particleContainer = document.createElement('div');
+    particleContainer.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+    `;
+    document.body.appendChild(particleContainer);
+
+    for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.style.cssText = `
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #00ff41;
+            border-radius: 50%;
+            opacity: ${Math.random() * 0.5};
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation: particleFloat ${Math.random() * 10 + 5}s linear infinite;
+        `;
+        particleContainer.appendChild(particle);
     }
-`;
-document.head.appendChild(style);
 
-// Console welcome message in Arabic
-console.log('%c🛡️ محفظة الأمن السيبراني - الوضع المظلم', 'color: #00ff41; font-size: 16px; font-weight: bold;');
-console.log('%cمرحباً بك في محفظة أحمد رشدي للأمن السيبراني', 'color: #cccccc; font-size: 14px;');
-console.log('%cاضغط Ctrl+Shift+D للتبديل إلى الوضع الفاتح', 'color: #00cc33; font-size: 12px;');
-console.log('%cاضغط Ctrl+Shift+L للتبديل إلى الإنجليزية', 'color: #00cc33; font-size: 12px;');
+    const particleStyle = document.createElement('style');
+    particleStyle.textContent = `
+        @keyframes particleFloat {
+            0% { transform: translateY(0px) translateX(0px); }
+            25% { transform: translateY(-20px) translateX(10px); }
+            50% { transform: translateY(-40px) translateX(-5px); }
+            75% { transform: translateY(-20px) translateX(-10px); }
+            100% { transform: translateY(0px) translateX(0px); }
+        }
+    `;
+    document.head.appendChild(particleStyle);
+}
+
+// Initialize additional effects when page loads
+window.addEventListener('load', () => {
+    initTerminalSimulation();
+    initCyberGrid();
+    initStatusIndicators();
+    initParticleSystem();
+});
+
+// Handle window resize
+window.addEventListener('resize', () => {
+    // Reinitialize matrix background on resize
+    const matrixContainer = document.querySelector('div[style*="matrix"]');
+    if (matrixContainer) {
+        matrixContainer.remove();
+        initMatrixBackground();
+    }
+});
+
+// Keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+    // Ctrl + Shift + L for language toggle
+    if (e.ctrlKey && e.shiftKey && e.key === 'L') {
+        window.location.href = 'cybersecurity-darkmode.html';
+    }
+    
+    // Ctrl + Shift + T for theme toggle
+    if (e.ctrlKey && e.shiftKey && e.key === 'T') {
+        window.location.href = 'cybersecurity-ar.html';
+    }
+    
+    // F11 for fullscreen
+    if (e.key === 'F11') {
+        e.preventDefault();
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+        } else {
+            document.exitFullscreen();
+        }
+    }
+});
+
+// Custom cursor effect
+document.addEventListener('mousemove', (e) => {
+    let cursor = document.querySelector('.custom-cursor');
+    if (!cursor) {
+        cursor = document.createElement('div');
+        cursor.className = 'custom-cursor';
+        cursor.style.cssText = `
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #00ff41;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            mix-blend-mode: difference;
+        `;
+        document.body.appendChild(cursor);
+    }
+    
+    cursor.style.left = (e.clientX - 10) + 'px';
+    cursor.style.top = (e.clientY - 10) + 'px';
+});
+
+// Sound effects (optional - would require audio files)
+function playSound(soundType) {
+    // This would require audio files
+    // const audio = new Audio(`sounds/${soundType}.mp3`);
+    // audio.volume = 0.1;
+    // audio.play().catch(e => console.log('Audio play failed:', e));
+}
+
+// Console easter egg
+console.log(`
+    ╔══════════════════════════════════════╗
+    ║       نظام الوصول الآمن مُفعّل        ║
+    ║                                      ║
+    ║  مرحباً بك في محطة أحمد رشدي         ║
+    ║  للأمن السيبراني                     ║
+    ║                                      ║
+    ║  الحالة: آمن                         ║
+    ║  مستوى التهديد: محايد                ║
+    ║                                      ║
+    ╚══════════════════════════════════════╝
+`);
+
+console.log('%c[أمان] جميع الأنظمة تعمل بشكل طبيعي', 'color: #00ff41; font-weight: bold;');
+console.log('%c[معلومات] تم تفعيل مطر الماتريكس', 'color: #ffff00;');
+console.log('%c[نجح] نظام كشف التهديدات نشط', 'color: #00ff41;');
 

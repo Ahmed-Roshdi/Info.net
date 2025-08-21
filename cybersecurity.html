@@ -3,315 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ahmed Roshdi - Cybersecurity Specialist</title>
+    <title>Cybersecurity Services - Ahmed Roshdi</title>
     <link rel="stylesheet" href="css/cybersecurity.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔒</text></svg>">
 </head>
 <body>
-    <!-- Header Navigation -->
-    <header class="header">
-        <nav class="nav-container">
-            <div class="nav-left">
-                <a href="index.html" class="home-btn">
-                    <span class="icon">🏠</span> Home
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <i class="fas fa-shield-alt"></i>
+                    Ahmed Roshdi
                 </a>
             </div>
-            <div class="nav-center">
-                <div class="logo">
-                    <h1>Cybersecurity</h1>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#services" class="nav-link">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#stats" class="nav-link">Statistics</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#certifications" class="nav-link">Certifications</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="nav-controls">
+                <button class="lang-toggle" onclick="window.location.href='cybersecurity-ar.html'">العربية</button>
+                <button class="theme-toggle" onclick="window.location.href='cybersecurity-darkmode.html'">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
                 </div>
             </div>
-            <div class="nav-right">
-                <a href="cybersecurity-darkmode.html" class="mode-toggle">
-                    <span class="icon">🌙</span> Dark
-                </a>
-                <a href="cybersecurity-ar.html" class="lang-toggle">
-                    العربية
-                </a>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Auto-redirect notification -->
-    <div id="redirect-notification" class="redirect-notification">
-        <div class="notification-content">
-            <p>Switching to the true cybersecurity experience in <span id="countdown">7</span> seconds...</p>
-            <button id="stay-btn" class="stay-btn">Stay in Light Mode</button>
         </div>
-    </div>
+    </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>Ahmed Roshdi</h1>
-                <h2>Cybersecurity Specialist</h2>
-                <p>Protecting digital assets through comprehensive security assessments, incident response, and advanced threat detection.</p>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">315+</span>
-                        <span class="stat-label">Vulnerabilities Found</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">50+</span>
-                        <span class="stat-label">Security Audits</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">25+</span>
-                        <span class="stat-label">Incident Responses</span>
-                    </div>
+    <section class="hero" style="background-image: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('./images/QcLXx3zBngfM.jpg'); background-size: cover; background-position: center;">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="security-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Certified Security Expert</span>
+                </div>
+                <h1 class="hero-title">
+                    Cybersecurity <span class="highlight">Expertise</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Protecting digital assets with advanced security solutions
+                </p>
+                <p class="hero-description">
+                    Specialized in comprehensive cybersecurity strategies, from ethical hacking to secure application development. 
+                    Ensuring your digital infrastructure remains protected against evolving threats.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                        Explore Services
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i>
+                        Get Quote
+                    </a>
+                </div>
+                <div class="auto-redirect-notice">
+                    <p>Switching to enhanced dark mode experience in <span id="countdown">7</span> seconds...</p>
                 </div>
             </div>
-            <div class="hero-image">
-                <div class="security-shield">
-                    <div class="shield-icon">🛡️</div>
+            <div class="hero-visual">
+                <div class="security-dashboard">
+                    <div class="dashboard-header">
+                        <h3>Security Dashboard</h3>
+                        <div class="status-indicator">
+                            <span class="status-dot secure"></span>
+                            <span>Secure</span>
+                        </div>
+                    </div>
+                    <div class="dashboard-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">315+</div>
+                            <div class="stat-label">Vulnerabilities Found</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Projects Secured</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">99.9%</div>
+                            <div class="stat-label">Uptime</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section class="skills">
+    <!-- Services Section -->
+    <section id="services" class="services">
         <div class="container">
-            <h2>Core Competencies</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
+            <h2 class="section-title">Cybersecurity Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-ninja"></i>
+                    </div>
                     <h3>Penetration Testing</h3>
-                    <div class="skill-list">
-                        <div class="skill-item">
-                            <span class="skill-name">Web Application Testing</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="95%"></div>
-                            </div>
-                            <span class="skill-percentage">95%</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Network Penetration Testing</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="90%"></div>
-                            </div>
-                            <span class="skill-percentage">90%</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Mobile Application Testing</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="85%"></div>
-                            </div>
-                            <span class="skill-percentage">85%</span>
-                        </div>
+                    <p>Comprehensive security assessments to identify vulnerabilities before attackers do. Ethical hacking to strengthen your defenses.</p>
+                    <div class="service-tags">
+                        <span>OWASP</span>
+                        <span>NIST</span>
+                        <span>Metasploit</span>
+                        <span>Burp Suite</span>
                     </div>
                 </div>
                 
-                <div class="skill-category">
-                    <h3>Defensive Security</h3>
-                    <div class="skill-list">
-                        <div class="skill-item">
-                            <span class="skill-name">Incident Response</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="92%"></div>
-                            </div>
-                            <span class="skill-percentage">92%</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Threat Hunting</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="88%"></div>
-                            </div>
-                            <span class="skill-percentage">88%</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">SOC Operations</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="90%"></div>
-                            </div>
-                            <span class="skill-percentage">90%</span>
-                        </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Vulnerability Assessment</h3>
+                    <p>Systematic identification and analysis of security weaknesses in applications, networks, and infrastructure.</p>
+                    <div class="service-tags">
+                        <span>Nessus</span>
+                        <span>OpenVAS</span>
+                        <span>Qualys</span>
+                        <span>Rapid7</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Secure Code Review</h3>
+                    <p>Comprehensive source code analysis to identify security flaws and ensure compliance with security standards.</p>
+                    <div class="service-tags">
+                        <span>SAST</span>
+                        <span>DAST</span>
+                        <span>SonarQube</span>
+                        <span>Checkmarx</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Network Security</h3>
+                    <p>Design and implementation of robust network security architectures to protect against intrusions and data breaches.</p>
+                    <div class="service-tags">
+                        <span>Firewall</span>
+                        <span>IDS/IPS</span>
+                        <span>VPN</span>
+                        <span>SIEM</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Case Studies Section -->
-    <section class="case-studies">
+    <!-- Stats Section -->
+    <section id="stats" class="stats">
         <div class="container">
-            <h2>Recent Security Engagements</h2>
-            <div class="cases-grid">
-                <div class="case-card">
-                    <div class="case-header">
-                        <h3>E-Commerce Platform Security Audit</h3>
-                        <span class="case-status completed">Completed</span>
+            <h2 class="section-title">Security Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-bug"></i>
                     </div>
-                    <p class="case-description">
-                        Conducted comprehensive security assessment of major e-commerce platform, identifying critical vulnerabilities and implementing robust security measures.
-                    </p>
-                    <div class="case-results">
-                        <div class="result-item">
-                            <span class="result-number">45</span>
-                            <span class="result-label">Vulnerabilities Found</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-number">100%</span>
-                            <span class="result-label">Critical Issues Resolved</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-number">30</span>
-                            <span class="result-label">Days to Complete</span>
-                        </div>
+                    <div class="stat-number">315+</div>
+                    <div class="stat-label">Vulnerabilities Found</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Projects Secured</div>
                 </div>
-
-                <div class="case-card">
-                    <div class="case-header">
-                        <h3>Financial Institution Incident Response</h3>
-                        <span class="case-status completed">Completed</span>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
                     </div>
-                    <p class="case-description">
-                        Led incident response team during sophisticated APT attack, successfully containing the threat and preventing data breach.
-                    </p>
-                    <div class="case-results">
-                        <div class="result-item">
-                            <span class="result-number">2</span>
-                            <span class="result-label">Hours Response Time</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-number">0</span>
-                            <span class="result-label">Data Compromised</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-number">100%</span>
-                            <span class="result-label">System Recovery</span>
-                        </div>
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">System Uptime</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
                     </div>
-                </div>
-
-                <div class="case-card">
-                    <div class="case-header">
-                        <h3>Government Network Hardening</h3>
-                        <span class="case-status in-progress">In Progress</span>
-                    </div>
-                    <p class="case-description">
-                        Implementing advanced security controls and zero-trust architecture for critical government infrastructure.
-                    </p>
-                    <div class="case-results">
-                        <div class="result-item">
-                            <span class="result-number">85%</span>
-                            <span class="result-label">Implementation Complete</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-number">200+</span>
-                            <span class="result-label">Endpoints Secured</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-number">0</span>
-                            <span class="result-label">Security Incidents</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tools Section -->
-    <section class="tools">
-        <div class="container">
-            <h2>Security Arsenal</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="tool-icon">🛡️</div>
-                    <h3>Burp Suite</h3>
-                    <p>Web Application Security Testing</p>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-icon">⚔️</div>
-                    <h3>Metasploit</h3>
-                    <p>Penetration Testing Framework</p>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-icon">🔍</div>
-                    <h3>Wireshark</h3>
-                    <p>Network Protocol Analysis</p>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-icon">🗺️</div>
-                    <h3>Nmap</h3>
-                    <p>Network Discovery & Security Auditing</p>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-icon">📊</div>
-                    <h3>Splunk</h3>
-                    <p>Security Information & Event Management</p>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-icon">🐉</div>
-                    <h3>Kali Linux</h3>
-                    <p>Penetration Testing Operating System</p>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-icon">⚡</div>
-                    <h3>OWASP ZAP</h3>
-                    <p>Web Application Security Scanner</p>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-icon">🧠</div>
-                    <h3>Volatility</h3>
-                    <p>Memory Forensics Framework</p>
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Clients Protected</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Certifications Section -->
-    <section class="certifications">
+    <section id="certifications" class="certifications">
         <div class="container">
-            <h2>Professional Certifications</h2>
-            <div class="cert-grid">
+            <h2 class="section-title">Certifications & Expertise</h2>
+            <div class="certifications-grid">
                 <div class="cert-card">
-                    <div class="cert-badge">CEH</div>
-                    <h3>Certified Ethical Hacker</h3>
-                    <p class="cert-status">In Progress</p>
-                    <p class="cert-description">Advanced ethical hacking and penetration testing certification</p>
+                    <div class="cert-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>CEH</h3>
+                    <p>Certified Ethical Hacker</p>
+                    <div class="cert-status">In Progress</div>
                 </div>
                 <div class="cert-card">
-                    <div class="cert-badge">OSCP</div>
-                    <h3>Offensive Security Certified Professional</h3>
-                    <p class="cert-status">Planned</p>
-                    <p class="cert-description">Hands-on penetration testing certification</p>
+                    <div class="cert-icon">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    <h3>OSCP</h3>
+                    <p>Offensive Security Certified Professional</p>
+                    <div class="cert-status">Planned</div>
                 </div>
                 <div class="cert-card">
-                    <div class="cert-badge">CISSP</div>
-                    <h3>Certified Information Systems Security Professional</h3>
-                    <p class="cert-status">Future Goal</p>
-                    <p class="cert-description">Advanced information security management certification</p>
+                    <div class="cert-icon">
+                        <i class="fas fa-shield-virus"></i>
+                    </div>
+                    <h3>CISSP</h3>
+                    <p>Certified Information Systems Security Professional</p>
+                    <div class="cert-status">Future Goal</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="contact">
+    <section id="contact" class="contact">
         <div class="container">
-            <h2>Get In Touch</h2>
-            <p>Ready to secure your digital assets? Let's discuss your cybersecurity needs.</p>
-            <div class="contact-grid">
-                <a href="mailto:ahmed@example.com" class="contact-btn">
-                    <span class="contact-icon">📧</span>
-                    <span class="contact-text">Email</span>
-                </a>
-                <a href="https://github.com/ahmed" class="contact-btn">
-                    <span class="contact-icon">💻</span>
-                    <span class="contact-text">GitHub</span>
-                </a>
-                <a href="https://linkedin.com/in/ahmed" class="contact-btn">
-                    <span class="contact-icon">🔗</span>
-                    <span class="contact-text">LinkedIn</span>
-                </a>
-                <a href="tel:+1234567890" class="contact-btn">
-                    <span class="contact-icon">📱</span>
-                    <span class="contact-text">Phone</span>
-                </a>
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Ready to secure your digital assets?</h3>
+                    <p>Let's discuss your cybersecurity needs and create a comprehensive security strategy for your organization.</p>
+                    <div class="contact-buttons">
+                        <a href="https://github.com/ahmed-roshdi" class="contact-btn">
+                            <i class="fab fa-github"></i>
+                            GitHub
+                        </a>
+                        <a href="mailto:contact@ahmed-roshdi.com" class="contact-btn">
+                            <i class="fas fa-envelope"></i>
+                            Email
+                        </a>
+                        <a href="https://linkedin.com/in/ahmed-roshdi" class="contact-btn">
+                            <i class="fab fa-linkedin"></i>
+                            LinkedIn
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -319,8 +274,21 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Ahmed Roshdi. All rights reserved.</p>
-            <p>Securing the digital world, one system at a time.</p>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Ahmed Roshdi - Cybersecurity Expert</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#services">Services</a>
+                    <a href="#stats">Statistics</a>
+                    <a href="#certifications">Certifications</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Ahmed Roshdi. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 

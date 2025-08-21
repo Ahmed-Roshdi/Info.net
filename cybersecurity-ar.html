@@ -3,328 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أحمد رشدي - أخصائي الأمن السيبراني</title>
+    <title>خدمات الأمن السيبراني - أحمد رشدي</title>
     <link rel="stylesheet" href="css/cybersecurity-ar.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔒</text></svg>">
 </head>
 <body>
-    <!-- Header Navigation -->
-    <header class="header">
-        <nav class="nav-container">
-            <div class="nav-right">
-                <a href="index-ar.html" class="home-btn">
-                    <span class="icon">🏠</span> الرئيسية
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index-ar.html">
+                    <i class="fas fa-shield-alt"></i>
+                    أحمد رشدي
                 </a>
             </div>
-            <div class="nav-center">
-                <div class="logo">
-                    <h1>الأمن السيبراني</h1>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index-ar.html" class="nav-link">الرئيسية</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#services" class="nav-link">الخدمات</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#stats" class="nav-link">الإحصائيات</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#certifications" class="nav-link">الشهادات</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">التواصل</a>
+                </li>
+            </ul>
+            <div class="nav-controls">
+                <button class="lang-toggle" onclick="window.location.href='cybersecurity.html'">English</button>
+                <button class="theme-toggle" onclick="window.location.href='cybersecurity-ar-darkmode.html'">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
                 </div>
             </div>
-            <div class="nav-left">
-                <a href="cybersecurity-ar-darkmode.html" class="mode-toggle">
-                    <span class="icon">🌙</span> مظلم
-                </a>
-                <a href="cybersecurity.html" class="lang-toggle">
-                    English
-                </a>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Auto-redirect notification -->
-    <div id="redirect-notification" class="redirect-notification">
-        <div class="notification-content">
-            <p>التبديل إلى تجربة الأمن السيبراني الحقيقية خلال <span id="countdown">7</span> ثوانٍ...</p>
-            <button id="stay-btn" class="stay-btn">البقاء في الوضع الفاتح</button>
         </div>
-    </div>
+    </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-image">
-                <div class="security-shield">
-                    <div class="shield-icon">🛡️</div>
+    <section class="hero" style="background-image: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('./images/JYp25mPCpfSG.jpg'); background-size: cover; background-position: center;">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="security-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>خبير أمن سيبراني معتمد</span>
+                </div>
+                <h1 class="hero-title">
+                    خبرة <span class="highlight">الأمن السيبراني</span>
+                </h1>
+                <p class="hero-subtitle">
+                    حماية الأصول الرقمية بحلول أمنية متقدمة
+                </p>
+                <p class="hero-description">
+                    متخصص في استراتيجيات الأمن السيبراني الشاملة، من الاختراق الأخلاقي إلى تطوير التطبيقات الآمنة. 
+                    ضمان بقاء البنية التحتية الرقمية محمية ضد التهديدات المتطورة.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                        استكشف الخدمات
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i>
+                        احصل على عرض سعر
+                    </a>
+                </div>
+                <div class="auto-redirect-notice">
+                    <p>التبديل إلى تجربة الوضع المظلم المحسن خلال <span id="countdown">7</span> ثوانٍ...</p>
                 </div>
             </div>
-            <div class="hero-text">
-                <h1>أحمد رشدي</h1>
-                <h2>أخصائي الأمن السيبراني</h2>
-                <p>حماية الأصول الرقمية من خلال تقييمات الأمان الشاملة والاستجابة للحوادث واكتشاف التهديدات المتقدمة.</p>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">315+</span>
-                        <span class="stat-label">ثغرة مكتشفة</span>
+            <div class="hero-visual">
+                <div class="security-dashboard">
+                    <div class="dashboard-header">
+                        <h3>لوحة الأمان</h3>
+                        <div class="status-indicator">
+                            <span class="status-dot secure"></span>
+                            <span>آمن</span>
+                        </div>
                     </div>
-                    <div class="stat">
-                        <span class="stat-number">50+</span>
-                        <span class="stat-label">تدقيق أمني</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">25+</span>
-                        <span class="stat-label">استجابة للحوادث</span>
+                    <div class="dashboard-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">315+</div>
+                            <div class="stat-label">ثغرة مكتشفة</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">مشروع مؤمن</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">99.9%</div>
+                            <div class="stat-label">وقت التشغيل</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section class="skills">
+    <!-- Services Section -->
+    <section id="services" class="services">
         <div class="container">
-            <h2>الكفاءات الأساسية</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
+            <h2 class="section-title">خدمات الأمن السيبراني</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-ninja"></i>
+                    </div>
                     <h3>اختبار الاختراق</h3>
-                    <div class="skill-list">
-                        <div class="skill-item">
-                            <span class="skill-name">اختبار تطبيقات الويب</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="95%"></div>
-                            </div>
-                            <span class="skill-percentage">95%</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">اختبار اختراق الشبكات</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="90%"></div>
-                            </div>
-                            <span class="skill-percentage">90%</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">اختبار التطبيقات المحمولة</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="85%"></div>
-                            </div>
-                            <span class="skill-percentage">85%</span>
-                        </div>
+                    <p>تقييمات أمنية شاملة لتحديد الثغرات قبل أن يجدها المهاجمون. الاختراق الأخلاقي لتقوية دفاعاتك.</p>
+                    <div class="service-tags">
+                        <span>OWASP</span>
+                        <span>NIST</span>
+                        <span>Metasploit</span>
+                        <span>Burp Suite</span>
                     </div>
                 </div>
                 
-                <div class="skill-category">
-                    <h3>الأمن الدفاعي</h3>
-                    <div class="skill-list">
-                        <div class="skill-item">
-                            <span class="skill-name">الاستجابة للحوادث</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="92%"></div>
-                            </div>
-                            <span class="skill-percentage">92%</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">تتبع التهديدات</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="88%"></div>
-                            </div>
-                            <span class="skill-percentage">88%</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">عمليات SOC</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="90%"></div>
-                            </div>
-                            <span class="skill-percentage">90%</span>
-                        </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>تقييم الثغرات</h3>
+                    <p>تحديد وتحليل منهجي لنقاط الضعف الأمنية في التطبيقات والشبكات والبنية التحتية.</p>
+                    <div class="service-tags">
+                        <span>Nessus</span>
+                        <span>OpenVAS</span>
+                        <span>Qualys</span>
+                        <span>Rapid7</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>مراجعة الكود الآمن</h3>
+                    <p>تحليل شامل للكود المصدري لتحديد العيوب الأمنية وضمان الامتثال لمعايير الأمان.</p>
+                    <div class="service-tags">
+                        <span>SAST</span>
+                        <span>DAST</span>
+                        <span>SonarQube</span>
+                        <span>Checkmarx</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>أمن الشبكات</h3>
+                    <p>تصميم وتنفيذ هياكل أمن الشبكات القوية للحماية من التسلل وانتهاكات البيانات.</p>
+                    <div class="service-tags">
+                        <span>Firewall</span>
+                        <span>IDS/IPS</span>
+                        <span>VPN</span>
+                        <span>SIEM</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Case Studies Section -->
-    <section class="case-studies">
+    <!-- Stats Section -->
+    <section id="stats" class="stats">
         <div class="container">
-            <h2>المشاركات الأمنية الحديثة</h2>
-            <div class="cases-grid">
-                <div class="case-card">
-                    <div class="case-header">
-                        <h3>تدقيق أمان منصة التجارة الإلكترونية</h3>
-                        <span class="case-status completed">مكتمل</span>
+            <h2 class="section-title">إحصائيات الأمان</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-bug"></i>
                     </div>
-                    <p class="case-description">
-                        إجراء تقييم أمني شامل لمنصة تجارة إلكترونية كبرى، وتحديد الثغرات الحرجة وتنفيذ تدابير أمنية قوية.
-                    </p>
-                    <div class="case-results">
-                        <div class="result-item">
-                            <span class="result-number">45</span>
-                            <span class="result-label">ثغرة مكتشفة</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-number">100%</span>
-                            <span class="result-label">المشاكل الحرجة محلولة</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-number">30</span>
-                            <span class="result-label">يوم للإنجاز</span>
-                        </div>
+                    <div class="stat-number">315+</div>
+                    <div class="stat-label">ثغرة مكتشفة</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">مشروع مؤمن</div>
                 </div>
-
-                <div class="case-card">
-                    <div class="case-header">
-                        <h3>الاستجابة لحادث مؤسسة مالية</h3>
-                        <span class="case-status completed">مكتمل</span>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
                     </div>
-                    <p class="case-description">
-                        قيادة فريق الاستجابة للحوادث أثناء هجوم APT متطور، ونجح في احتواء التهديد ومنع اختراق البيانات.
-                    </p>
-                    <div class="case-results">
-                        <div class="result-item">
-                            <span class="result-number">2</span>
-                            <span class="result-label">ساعة وقت الاستجابة</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-number">0</span>
-                            <span class="result-label">بيانات مخترقة</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-number">100%</span>
-                            <span class="result-label">استرداد النظام</span>
-                        </div>
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">وقت تشغيل النظام</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
                     </div>
-                </div>
-
-                <div class="case-card">
-                    <div class="case-header">
-                        <h3>تقوية الشبكة الحكومية</h3>
-                        <span class="case-status in-progress">قيد التنفيذ</span>
-                    </div>
-                    <p class="case-description">
-                        تنفيذ ضوابط أمنية متقدمة وهيكلة عدم الثقة للبنية التحتية الحكومية الحرجة.
-                    </p>
-                    <div class="case-results">
-                        <div class="result-item">
-                            <span class="result-number">85%</span>
-                            <span class="result-label">التنفيذ مكتمل</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-number">200+</span>
-                            <span class="result-label">نقطة نهاية محمية</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-number">0</span>
-                            <span class="result-label">حوادث أمنية</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tools Section -->
-    <section class="tools">
-        <div class="container">
-            <h2>ترسانة الأمان</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="tool-icon">🛡️</div>
-                    <h3>Burp Suite</h3>
-                    <p>اختبار أمان تطبيقات الويب</p>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-icon">⚔️</div>
-                    <h3>Metasploit</h3>
-                    <p>إطار عمل اختبار الاختراق</p>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-icon">🔍</div>
-                    <h3>Wireshark</h3>
-                    <p>تحليل بروتوكولات الشبكة</p>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-icon">🗺️</div>
-                    <h3>Nmap</h3>
-                    <p>اكتشاف الشبكة والتدقيق الأمني</p>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-icon">📊</div>
-                    <h3>Splunk</h3>
-                    <p>إدارة معلومات وأحداث الأمان</p>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-icon">🐉</div>
-                    <h3>Kali Linux</h3>
-                    <p>نظام تشغيل اختبار الاختراق</p>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-icon">⚡</div>
-                    <h3>OWASP ZAP</h3>
-                    <p>ماسح أمان تطبيقات الويب</p>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-icon">🧠</div>
-                    <h3>Volatility</h3>
-                    <p>إطار عمل تحليل الذاكرة الجنائي</p>
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">عميل محمي</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Certifications Section -->
-    <section class="certifications">
+    <section id="certifications" class="certifications">
         <div class="container">
-            <h2>الشهادات المهنية</h2>
-            <div class="cert-grid">
+            <h2 class="section-title">الشهادات والخبرات</h2>
+            <div class="certifications-grid">
                 <div class="cert-card">
-                    <div class="cert-badge">CEH</div>
-                    <h3>هاكر أخلاقي معتمد</h3>
-                    <p class="cert-status">قيد التحضير</p>
-                    <p class="cert-description">شهادة متقدمة في الهاكينغ الأخلاقي واختبار الاختراق</p>
+                    <div class="cert-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>CEH</h3>
+                    <p>هاكر أخلاقي معتمد</p>
+                    <div class="cert-status">قيد التقدم</div>
                 </div>
                 <div class="cert-card">
-                    <div class="cert-badge">OSCP</div>
-                    <h3>محترف أمان هجومي معتمد</h3>
-                    <p class="cert-status">مخطط</p>
-                    <p class="cert-description">شهادة عملية في اختبار الاختراق</p>
+                    <div class="cert-icon">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    <h3>OSCP</h3>
+                    <p>محترف أمن هجومي معتمد</p>
+                    <div class="cert-status">مخطط</div>
                 </div>
                 <div class="cert-card">
-                    <div class="cert-badge">CISSP</div>
-                    <h3>محترف أمان أنظمة المعلومات المعتمد</h3>
-                    <p class="cert-status">هدف مستقبلي</p>
-                    <p class="cert-description">شهادة متقدمة في إدارة أمان المعلومات</p>
+                    <div class="cert-icon">
+                        <i class="fas fa-shield-virus"></i>
+                    </div>
+                    <h3>CISSP</h3>
+                    <p>محترف أمن أنظمة المعلومات المعتمد</p>
+                    <div class="cert-status">هدف مستقبلي</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="contact">
+    <section id="contact" class="contact">
         <div class="container">
-            <h2>تواصل معي</h2>
-            <p>مستعد لتأمين أصولك الرقمية؟ دعنا نناقش احتياجاتك في الأمن السيبراني.</p>
-            <div class="contact-grid">
-                <a href="mailto:ahmed@example.com" class="contact-btn">
-                    <span class="contact-icon">📧</span>
-                    <span class="contact-text">البريد الإلكتروني</span>
-                </a>
-                <a href="https://github.com/ahmed" class="contact-btn">
-                    <span class="contact-icon">💻</span>
-                    <span class="contact-text">GitHub</span>
-                </a>
-                <a href="https://linkedin.com/in/ahmed" class="contact-btn">
-                    <span class="contact-icon">🔗</span>
-                    <span class="contact-text">LinkedIn</span>
-                </a>
-                <a href="tel:+1234567890" class="contact-btn">
-                    <span class="contact-icon">📱</span>
-                    <span class="contact-text">الهاتف</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 أحمد رشدي. جميع الحقوق محفوظة.</p>
-            <p>تأمين العالم الرقمي، نظام واحد في كل مرة.</p>
-        </div>
-    </footer>
-
-    <script src="js/cybersecurity-ar.js"></script>
-</body>
-</html>
+            <h2 class="section-title">تواصل معنا</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>مستعد لتأمين أصولك الرقمية؟</h3>
+                    <p>دعنا نناقش احتياجاتك في الأمن السيبراني وننش
 
