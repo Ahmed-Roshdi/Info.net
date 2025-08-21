@@ -130,10 +130,6 @@ When a specific field is mentioned, the written text about the field will allow 
 4. In The Main Page, We Will Develop "Connect Secion" at End of the Page.
 5. The All website Shoud have Translation to Arabic, Not The Main Page Only!!, In Num3 It was an example for Createing Translated page for main page: We will Reapet The Instrucions in Num3 to Create Translated page for Every Department page like "CyberSecurity" and Translated page "الأمن السيبراني". Please Understand me and Contenue Reading.
 
-6. Don't forget night mode
-on the index.html page
-and
-index-ar.html
 
 and make the site more interactive. In the contact section, replace the text with buttons
 e.g., GitHub, etc.
