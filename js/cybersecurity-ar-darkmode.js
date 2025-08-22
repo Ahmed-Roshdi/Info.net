@@ -445,29 +445,7 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Custom cursor effect
-document.addEventListener('mousemove', (e) => {
-    let cursor = document.querySelector('.custom-cursor');
-    if (!cursor) {
-        cursor = document.createElement('div');
-        cursor.className = 'custom-cursor';
-        cursor.style.cssText = `
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #00ff41;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transition: all 0.1s ease;
-            mix-blend-mode: difference;
-        `;
-        document.body.appendChild(cursor);
-    }
-    
-    cursor.style.left = (e.clientX - 10) + 'px';
-    cursor.style.top = (e.clientY - 10) + 'px';
-});
+// Custom cursor effect removed as requested
 
 // Sound effects (optional - would require audio files)
 function playSound(soundType) {

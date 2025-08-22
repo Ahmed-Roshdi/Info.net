@@ -708,3 +708,42 @@ body {
     }
 }
 
+
+/* Auto-redirect notice and cancel button styles */
+.auto-redirect-notice {
+    background: rgba(37, 99, 235, 0.1);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+}
+
+.auto-redirect-notice p {
+    margin-bottom: 0.5rem;
+}
+
+.cancel-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-primary);
+}
+
+.cancel-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+#countdown {
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+

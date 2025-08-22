@@ -123,22 +123,58 @@ function initSmoothScrolling() {
 
 // Auto Redirect to Dark Mode
 function initAutoRedirect() {
+    // Check if user has already visited or cancelled redirect
+    if (sessionStorage.getItem('cybersecurity_visited')) {
+        const notice = document.querySelector('.auto-redirect-notice');
+        if (notice) {
+            notice.style.display = 'none';
+        }
+        return;
+    }
+
     const countdownElement = document.getElementById('countdown');
+    const cancelButton = document.getElementById('cancel-redirect');
     if (!countdownElement) return;
 
     let timeLeft = 7;
+    let redirectTimer;
     
     const updateCountdown = () => {
         countdownElement.textContent = timeLeft;
         
         if (timeLeft <= 0) {
+            sessionStorage.setItem('cybersecurity_visited', 'true');
             window.location.href = 'cybersecurity-darkmode.html';
             return;
         }
         
         timeLeft--;
-        setTimeout(updateCountdown, 1000);
+        redirectTimer = setTimeout(updateCountdown, 1000);
     };
+    
+    // Cancel redirect functionality
+    if (cancelButton) {
+        cancelButton.addEventListener('click', () => {
+            clearTimeout(redirectTimer);
+            sessionStorage.setItem('cybersecurity_visited', 'true');
+            const notice = document.querySelector('.auto-redirect-notice');
+            if (notice) {
+                notice.style.display = 'none';
+            }
+        });
+    }
+    
+    // Also cancel on any other page interaction
+    document.addEventListener('click', (e) => {
+        if (e.target.id !== 'cancel-redirect' && !e.target.closest('.auto-redirect-notice')) {
+            clearTimeout(redirectTimer);
+            sessionStorage.setItem('cybersecurity_visited', 'true');
+            const notice = document.querySelector('.auto-redirect-notice');
+            if (notice) {
+                notice.style.display = 'none';
+            }
+        }
+    });
     
     updateCountdown();
 }

@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!sessionStorage.getItem('cybersecurity_ar_visited')) {
         let countdown = 7;
         const countdownElement = document.getElementById('countdown');
+        const cancelButton = document.getElementById('cancel-redirect');
         
         const timer = setInterval(() => {
             countdown--;
@@ -19,12 +20,27 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }, 1000);
         
+        // Allow user to cancel redirect by clicking cancel button
+        if (cancelButton) {
+            cancelButton.addEventListener('click', () => {
+                clearInterval(timer);
+                sessionStorage.setItem('cybersecurity_ar_visited', 'true');
+                const notice = document.querySelector('.auto-redirect-notice');
+                if (notice) {
+                    notice.style.display = 'none';
+                }
+            });
+        }
+        
         // Allow user to cancel redirect by interacting with the page
-        document.addEventListener('click', () => {
-            clearInterval(timer);
-            sessionStorage.setItem('cybersecurity_ar_visited', 'true');
-            if (countdownElement && countdownElement.parentElement) {
-                countdownElement.parentElement.style.display = 'none';
+        document.addEventListener('click', (e) => {
+            if (e.target.id !== 'cancel-redirect' && !e.target.closest('.auto-redirect-notice')) {
+                clearInterval(timer);
+                sessionStorage.setItem('cybersecurity_ar_visited', 'true');
+                const notice = document.querySelector('.auto-redirect-notice');
+                if (notice) {
+                    notice.style.display = 'none';
+                }
             }
         });
     } else {
