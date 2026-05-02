@@ -216,13 +216,32 @@ function enhanceThemeAccessibilityArabic() {
 }
 
 // Theme-aware image loading for Arabic content
+function sanitizeImageSrcArabic(urlValue) {
+    if (!urlValue) {
+        return null;
+    }
+
+    try {
+        const parsedUrl = new URL(urlValue, window.location.href);
+        const allowedProtocols = ['http:', 'https:'];
+
+        if (allowedProtocols.includes(parsedUrl.protocol)) {
+            return parsedUrl.href;
+        }
+    } catch (e) {
+        return null;
+    }
+
+    return null;
+}
+
 function loadThemeAwareImagesArabic() {
     const images = document.querySelectorAll('img[data-light-src][data-dark-src]');
     const currentTheme = document.documentElement.getAttribute('data-theme');
     
     images.forEach(img => {
-        const lightSrc = img.getAttribute('data-light-src');
-        const darkSrc = img.getAttribute('data-dark-src');
+        const lightSrc = sanitizeImageSrcArabic(img.getAttribute('data-light-src'));
+        const darkSrc = sanitizeImageSrcArabic(img.getAttribute('data-dark-src'));
         
         if (currentTheme === 'dark' && darkSrc) {
             img.src = darkSrc;
