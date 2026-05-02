@@ -171,14 +171,28 @@ function enhanceThemeAccessibility() {
     }
 }
 
+// Validate and sanitize image source URLs from DOM attributes
+function sanitizeImageSrc(src) {
+    if (!src) return null;
+    try {
+        const parsed = new URL(src, window.location.href);
+        if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
+            return parsed.href;
+        }
+    } catch (e) {
+        return null;
+    }
+    return null;
+}
+
 // Theme-aware image loading
 function loadThemeAwareImages() {
     const images = document.querySelectorAll('img[data-light-src][data-dark-src]');
     const currentTheme = document.documentElement.getAttribute('data-theme');
     
     images.forEach(img => {
-        const lightSrc = img.getAttribute('data-light-src');
-        const darkSrc = img.getAttribute('data-dark-src');
+        const lightSrc = sanitizeImageSrc(img.getAttribute('data-light-src'));
+        const darkSrc = sanitizeImageSrc(img.getAttribute('data-dark-src'));
         
         if (currentTheme === 'dark' && darkSrc) {
             img.src = darkSrc;
