@@ -171,14 +171,40 @@ function enhanceThemeAccessibility() {
     }
 }
 
+// Validate image source values read from DOM attributes
+function sanitizeImageSrc(src) {
+    if (!src || typeof src !== 'string') {
+        return null;
+    }
+
+    const trimmed = src.trim();
+    if (!trimmed) {
+        return null;
+    }
+
+    try {
+        const parsed = new URL(trimmed, window.location.href);
+        const protocol = parsed.protocol.toLowerCase();
+
+        // Allow only http(s) and relative URLs resolved by the browser
+        if (protocol === 'http:' || protocol === 'https:') {
+            return parsed.href;
+        }
+
+        return null;
+    } catch (err) {
+        return null;
+    }
+}
+
 // Theme-aware image loading
 function loadThemeAwareImages() {
     const images = document.querySelectorAll('img[data-light-src][data-dark-src]');
     const currentTheme = document.documentElement.getAttribute('data-theme');
     
     images.forEach(img => {
-        const lightSrc = img.getAttribute('data-light-src');
-        const darkSrc = img.getAttribute('data-dark-src');
+        const lightSrc = sanitizeImageSrc(img.getAttribute('data-light-src'));
+        const darkSrc = sanitizeImageSrc(img.getAttribute('data-dark-src'));
         
         if (currentTheme === 'dark' && darkSrc) {
             img.src = darkSrc;
